@@ -4,18 +4,66 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="app.davecstillo.com.schoolapp.MainActivity">
 
 
-    <fragment
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:name="app.davecstillo.com.schoolapp.feedFragment"
-        android:layout_alignParentTop="true"
-        android:id="@+id/fragment"
-        tools:layout="@layout/fragment_feed_list" />
+    <TabHost
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tabHost">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <fragment
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:name="app.davecstillo.com.schoolapp.schedule_frame"
+                        android:id="@+id/fragment"
+                        tools:layout="@layout/fragment_schedule_frame" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <fragment
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:name="app.davecstillo.com.schoolapp.feedFragment"
+                        android:id="@+id/fragment4"
+                        tools:layout="@layout/fragment_feed_list" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tab3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
 </RelativeLayout>
