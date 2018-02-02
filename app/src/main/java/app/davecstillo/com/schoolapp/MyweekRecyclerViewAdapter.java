@@ -1,6 +1,7 @@
 package app.davecstillo.com.schoolapp;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class MyweekRecyclerViewAdapter extends RecyclerView.Adapter<MyweekRecycl
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        Log.d("mValues",String.valueOf(mValues.get(position)));
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).day);

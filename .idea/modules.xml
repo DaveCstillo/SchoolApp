@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SchoolApp.iml" filepath="$PROJECT_DIR$/SchoolApp.iml" />
+      <module fileurl="file://C:\Users\DELL\Documents\GitHub\SchoolApp\SchoolApp.iml" filepath="C:\Users\DELL\Documents\GitHub\SchoolApp\SchoolApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\DELL\Documents\GitHub\SchoolApp\app\app.iml" filepath="C:\Users\DELL\Documents\GitHub\SchoolApp\app\app.iml" />
     </modules>
   </component>
 </project>

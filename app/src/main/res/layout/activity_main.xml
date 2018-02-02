@@ -37,7 +37,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:name="app.davecstillo.com.schoolapp.schedule_frame"
-                        android:id="@+id/fragment"
+                        android:id="@+id/schedule_fragment"
                         tools:layout="@layout/fragment_schedule_frame" />
                 </LinearLayout>
 
@@ -51,7 +51,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:name="app.davecstillo.com.schoolapp.feedFragment"
-                        android:id="@+id/fragment4"
+                        android:id="@+id/feed_fragment"
                         tools:layout="@layout/fragment_feed_list" />
                 </LinearLayout>
 

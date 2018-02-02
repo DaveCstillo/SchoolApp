@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:name="app.davecstillo.com.schoolapp.weekFragment"
-            android:id="@+id/fragment3"
+            android:id="@+id/weekFragment"
             tools:layout="@layout/fragment_week_list" />
 
         <CalendarView
