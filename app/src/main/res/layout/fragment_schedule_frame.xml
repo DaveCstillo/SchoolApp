@@ -5,22 +5,29 @@
     tools:context="app.davecstillo.com.schoolapp.schedule_frame">
 
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <fragment
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:name="app.davecstillo.com.schoolapp.weekFragment"
-            android:id="@+id/weekFragment"
-            tools:layout="@layout/fragment_week_list" />
+            android:layout_height="wrap_content">
 
-        <CalendarView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/calendarView" />
-    </LinearLayout>
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:name="app.davecstillo.com.schoolapp.weekFragment"
+                android:id="@+id/weekFragment"
+                tools:layout="@layout/fragment_week_list" />
+
+            <CalendarView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:id="@+id/calendarView"
+                android:showWeekNumber="false"/>
+        </LinearLayout>
+    </ScrollView>
+
 </FrameLayout>

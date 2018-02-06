@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 
@@ -21,13 +22,16 @@ public class MainActivity extends AppCompatActivity implements feedFragment.OnLi
     TabHost tabHost;
     LinearLayout tab1, tab2;
 
+    CalendarView cal;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         LayoutInflater inflater = LayoutInflater.from(this);
-
+        cal = (CalendarView) findViewById(R.id.calendarView);
         tab1 = (LinearLayout) findViewById(R.id.tab1);
         tab2 = (LinearLayout) findViewById(R.id.tab2);
 
@@ -46,7 +50,9 @@ public class MainActivity extends AppCompatActivity implements feedFragment.OnLi
 
         schedule = findViewById(R.id.schedule_fragment);
 
-        View laView = inflater.inflate(R.layout.fragment_schedule_frame,tab1,true);
+        schedule_frame.newInstance(cal);
+
+        //View laView = inflater.inflate(R.layout.fragment_schedule_frame,tab1,true);
 
 
 

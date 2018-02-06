@@ -30,7 +30,7 @@ public class MyweekRecyclerViewAdapter extends RecyclerView.Adapter<MyweekRecycl
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_week_list, parent, false);
+                .inflate(R.layout.fragment_week, parent, false);
         return new ViewHolder(view);
     }
 
@@ -38,7 +38,7 @@ public class MyweekRecyclerViewAdapter extends RecyclerView.Adapter<MyweekRecycl
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Log.d("mValues",String.valueOf(mValues.get(position)));
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
+        holder.mIdView.setText(String.valueOf(mValues.get(position).id));
         holder.mContentView.setText(mValues.get(position).day);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

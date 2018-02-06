@@ -27,11 +27,11 @@ public class WeekContent {
 
     private static void addItem(WeekItem item){
         ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+        ITEM_MAP.put(String.valueOf(item.id), item);
     }
 
     private static WeekItem createWeekItem(int position){
-        return new WeekItem(String.valueOf(position),selectDay(position),String.valueOf(position));
+        return new WeekItem(position,selectDay(position),makeDetails(position));
     }
 
     private static String selectDay(int position){
@@ -47,6 +47,16 @@ public class WeekContent {
         return dia;
     }
 
+    private static String makeDetails(int position){
+        StringBuilder builder = new StringBuilder();
+        builder.append("Details: ").append(position);
+        for(int i=0;i<position;i++){
+            builder.append("\nMore details info here.");
+        }
+        return builder.toString();
+
+    }
+
 
     /*
      *WeekItem Class
@@ -54,14 +64,14 @@ public class WeekContent {
      */
 
     public static class WeekItem{
-        public final String id;
+        public final int id;
         public final String day;
-        public final String dayNo;
+        public final String details;
 
-        public WeekItem(String id, String day, String dayNo){
+        public WeekItem(int id, String day, String details){
             this.id = id;
             this.day = day;
-            this.dayNo = dayNo;
+            this.details = details;
         }
 
         @Override
