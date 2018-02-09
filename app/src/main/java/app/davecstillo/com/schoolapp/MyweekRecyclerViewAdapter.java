@@ -10,6 +10,8 @@ import android.widget.TextView;
 import app.davecstillo.com.schoolapp.Content.WeekContent;
 import app.davecstillo.com.schoolapp.weekFragment.OnListFragmentInteractionListener;
 import app.davecstillo.com.schoolapp.Content.WeekContent.WeekItem;
+
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -31,6 +33,7 @@ public class MyweekRecyclerViewAdapter extends RecyclerView.Adapter<MyweekRecycl
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_week, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -40,6 +43,7 @@ public class MyweekRecyclerViewAdapter extends RecyclerView.Adapter<MyweekRecycl
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(String.valueOf(mValues.get(position).id));
         holder.mContentView.setText(mValues.get(position).day);
+        holder.mDetailsView.setText(mValues.get(position).details);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +66,7 @@ public class MyweekRecyclerViewAdapter extends RecyclerView.Adapter<MyweekRecycl
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
+        public final TextView mDetailsView;
         public WeekItem mItem;
 
         public ViewHolder(View view) {
@@ -69,6 +74,7 @@ public class MyweekRecyclerViewAdapter extends RecyclerView.Adapter<MyweekRecycl
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.id);
             mContentView = (TextView) view.findViewById(R.id.content);
+            mDetailsView = (TextView) view.findViewById(R.id.details);
         }
 
         @Override

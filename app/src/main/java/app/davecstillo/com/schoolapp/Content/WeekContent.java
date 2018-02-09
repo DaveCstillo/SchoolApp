@@ -1,6 +1,11 @@
 package app.davecstillo.com.schoolapp.Content;
 
+import android.util.Log;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +23,10 @@ public class WeekContent {
 
     private static final int COUNT = 5;
 
+    static SimpleDateFormat sDayFormat = new SimpleDateFormat("dd");
+
+    private Calendar calendar;
+
     static {
         //To add some items
         for(int i=1;i<=COUNT;i++){
@@ -31,7 +40,7 @@ public class WeekContent {
     }
 
     private static WeekItem createWeekItem(int position){
-        return new WeekItem(position,selectDay(position),makeDetails(position));
+        return new WeekItem(position,selectDay(position),setDay(position));
     }
 
     private static String selectDay(int position){
@@ -42,6 +51,37 @@ public class WeekContent {
             case 3: dia = "Miercoles"; break;
             case 4: dia = "Jueves"; break;
             case 5: dia = "Viernes"; break;
+        }
+
+        return dia;
+    }
+
+    private static String setDay(int position){
+        Date elDia = new Date();
+        Calendar calendar = Calendar.getInstance();
+        String dia;
+        int day;
+        dia = sDayFormat.format(elDia.getDate());
+        Log.d("Dia Fecha: ", String.valueOf(elDia.getDate()));
+        day = elDia.getDate();
+        switch (position){
+
+            case 1:
+                break;
+            case 2:
+                dia = sDayFormat.format(day+1);
+                break;
+            case 3:
+                dia = sDayFormat.format(day+2);
+                break;
+            case 4:
+                dia = sDayFormat.format(day+3);
+                break;
+            case 5:
+                dia = sDayFormat.format(day+4);
+                break;
+
+
         }
 
         return dia;

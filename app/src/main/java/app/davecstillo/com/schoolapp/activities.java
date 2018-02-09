@@ -1,36 +1,44 @@
 package app.davecstillo.com.schoolapp;
 
 import android.content.Context;
-import android.icu.util.Calendar;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.Date;
+
+import app.davecstillo.com.schoolapp.Content.activitiesContent;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link schedule_frame.OnFragmentInteractionListener} interface
+ * {@link activities.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link schedule_frame#newInstance} factory method to
+ * Use the {@link activities#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class schedule_frame extends Fragment {
+public class activities extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 
     // TODO: Rename and change types of parameters
-    private static CalendarView calendar;
-    static long selectedDate;
-    private OnFragmentInteractionListener mListener;
-    public static activities actividades;
 
-    public schedule_frame() {
+
+    private OnFragmentInteractionListener mListener;
+
+    public static TextView diaFecha, diaNombre, Contenido;
+
+    public activities() {
         // Required empty public constructor
     }
 
@@ -38,26 +46,22 @@ public class schedule_frame extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment schedule_frame.
+
+     * @return A new instance of fragment activities.
      */
     // TODO: Rename and change types and number of parameters
-    public static schedule_frame newInstance(CalendarView calendario) {
-        schedule_frame fragment = new schedule_frame();
-        calendar = calendario;
-        selectedDate = calendar.getDate();
-        calendar.setDate(selectedDate);
+    public static activities newInstance() {
+        activities fragment = new activities();
         Bundle args = new Bundle();
         fragment.setArguments(args);
-        actividades.newInstance();
+
+
         return fragment;
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        calendar = new CalendarView(getContext());
         if (getArguments() != null) {
         }
     }
@@ -66,15 +70,24 @@ public class schedule_frame extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule_frame, container, false);
+        View view = inflater.inflate(R.layout.fragment_activities, container, false);
+
+        if(view instanceof RecyclerView){
+            Context context = view.getContext();
+            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.setAdapter(new activitiesRecyclerView(activitiesContent.ITEMS,mListener));
+        }
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction(uri);
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {
@@ -105,6 +118,6 @@ public class schedule_frame extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(activitiesContent.dayItem item);
     }
 }

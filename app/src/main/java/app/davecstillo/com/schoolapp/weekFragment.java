@@ -14,6 +14,7 @@ import app.davecstillo.com.schoolapp.Content.WeekContent;
 import app.davecstillo.com.schoolapp.dummy.DummyContent;
 import app.davecstillo.com.schoolapp.dummy.DummyContent.DummyItem;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -29,6 +30,7 @@ public class weekFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the

@@ -11,10 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 
 import app.davecstillo.com.schoolapp.Content.WeekContent;
+import app.davecstillo.com.schoolapp.Content.activitiesContent;
 import app.davecstillo.com.schoolapp.dummy.DummyContent;
 
 
-public class MainActivity extends AppCompatActivity implements feedFragment.OnListFragmentInteractionListener, weekFragment.OnListFragmentInteractionListener, schedule_frame.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements feedFragment.OnListFragmentInteractionListener, activities.OnFragmentInteractionListener, schedule_frame.OnFragmentInteractionListener {
 
 
     View schedule;
@@ -63,13 +64,14 @@ public class MainActivity extends AppCompatActivity implements feedFragment.OnLi
 
     }
 
+
     @Override
-    public void onListFragmentInteraction(WeekContent.WeekItem item) {
+    public void onFragmentInteraction(Uri uri) {
 
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction(activitiesContent.dayItem item) {
 
     }
 }
