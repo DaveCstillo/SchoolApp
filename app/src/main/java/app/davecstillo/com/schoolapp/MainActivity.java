@@ -10,7 +10,6 @@ import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 
-import app.davecstillo.com.schoolapp.Content.WeekContent;
 import app.davecstillo.com.schoolapp.Content.activitiesContent;
 import app.davecstillo.com.schoolapp.dummy.DummyContent;
 
@@ -50,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements feedFragment.OnLi
         tabHost.addTab(spec);
 
         schedule = findViewById(R.id.schedule_fragment);
+        schedule_frame.newInstance();
 
-        schedule_frame.newInstance(cal);
 
         //View laView = inflater.inflate(R.layout.fragment_schedule_frame,tab1,true);
 

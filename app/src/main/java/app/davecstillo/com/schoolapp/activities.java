@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.CalendarView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -29,6 +32,7 @@ import app.davecstillo.com.schoolapp.Content.activitiesContent;
 public class activities extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    RecyclerView recyclerView;
 
 
     // TODO: Rename and change types of parameters
@@ -36,7 +40,6 @@ public class activities extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public static TextView diaFecha, diaNombre, Contenido;
 
     public activities() {
         // Required empty public constructor
@@ -54,8 +57,6 @@ public class activities extends Fragment {
         activities fragment = new activities();
         Bundle args = new Bundle();
         fragment.setArguments(args);
-
-
         return fragment;
     }
 
@@ -70,16 +71,24 @@ public class activities extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_activities, container, false);
+        View view = inflater.inflate(R.layout.fragment_activites_content, container, false);
+        Log.e("NOTIF","Esta chiva va por aqui xD");
 
         if(view instanceof RecyclerView){
+            Log.e("NOTIF","Esta chiva va luego de eso");
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(new activitiesRecyclerView(activitiesContent.ITEMS,mListener));
+
         }
 
         return view;
+    }
+
+    public void sto(){
+
+       recyclerView.setAdapter(new activitiesRecyclerView(activitiesContent.ITEMS,mListener));
     }
 
     // TODO: Rename method, update argument and hook method into UI event

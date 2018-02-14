@@ -1,33 +1,23 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.davecstillo.com.schoolapp.schedule_frame">
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+    android:orientation="vertical"
+    tools:context="app.davecstillo.com.schoolapp.schedule_frame"
+    android:scrollbars="vertical">
 
             <fragment
+                android:id="@+id/activitiesFragment"
+                android:name="app.davecstillo.com.schoolapp.activities"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:name="app.davecstillo.com.schoolapp.activities"
-                android:id="@+id/activitiesFragment"
-                tools:layout="@layout/fragment_activities" />
+                tools:layout="@layout/fragment_activites_content"
+                />
 
             <CalendarView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:id="@+id/calendarView"
                 android:showWeekNumber="false"/>
-        </LinearLayout>
-    </ScrollView>
 
-</FrameLayout>
+</LinearLayout>

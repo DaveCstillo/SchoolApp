@@ -5,12 +5,16 @@ import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+
+import java.text.SimpleDateFormat;
 
 
 /**
@@ -28,7 +32,9 @@ public class schedule_frame extends Fragment {
     private static CalendarView calendar;
     static long selectedDate;
     private OnFragmentInteractionListener mListener;
-    public static activities actividades;
+
+
+    public static SimpleDateFormat DayNoformat = new SimpleDateFormat("dd-MM");
 
     public schedule_frame() {
         // Required empty public constructor
@@ -41,23 +47,17 @@ public class schedule_frame extends Fragment {
      * @return A new instance of fragment schedule_frame.
      */
     // TODO: Rename and change types and number of parameters
-    public static schedule_frame newInstance(CalendarView calendario) {
+    public static schedule_frame newInstance() {
         schedule_frame fragment = new schedule_frame();
-        calendar = calendario;
-        selectedDate = calendar.getDate();
-        calendar.setDate(selectedDate);
         Bundle args = new Bundle();
         fragment.setArguments(args);
-        actividades.newInstance();
         return fragment;
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        calendar = new CalendarView(getContext());
         if (getArguments() != null) {
         }
     }
@@ -66,7 +66,21 @@ public class schedule_frame extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule_frame, container, false);
+        View view;
+        view = inflater.inflate(R.layout.fragment_schedule_frame, container, false);
+
+        calendar = (CalendarView) view.findViewById(R.id.calendarView);
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                Log.d("Cambio la fecha","Nueva Fecha año " + String.valueOf(i));
+                Log.d("Cambio la fecha","Nueva Fecha mes " + String.valueOf(i1));
+                Log.d("Cambio la fecha","Nueva Fecha dia " + String.valueOf(i2));
+
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
