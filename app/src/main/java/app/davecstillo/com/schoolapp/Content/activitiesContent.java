@@ -17,8 +17,7 @@ import java.util.Map;
 
 public class activitiesContent {
 
-    public static final List<dayItem> ITEMS = new ArrayList<dayItem>();
-    public static final Map<String, dayItem> ITEM_MAP = new HashMap<String, dayItem>();
+    public static dayItem ITEM;
 
     public static SimpleDateFormat DayNoformat = new SimpleDateFormat("dd-MM");
     public static SimpleDateFormat DayNameformat = new SimpleDateFormat("E");
@@ -28,47 +27,72 @@ public class activitiesContent {
    static {
        Calendar cal;
        cal = Calendar.getInstance();
-
-       Log.e("DayNoFormat","Format: "+DayNoformat.format(cal.getTime()));
-       Log.e("DayNameFormat","Format: "+DayNameformat.format(cal.getTime()));
+        ITEM = new dayItem();
+       Log.e("DayNoFormat", "Format: " + DayNoformat.format(cal.getTime()));
+       Log.e("DayNameFormat", "Format: " + DayNameformat.format(cal.getTime()));
 
        String diaNo = DayNoformat.format(cal.getTime());
        String diaName = DayNameformat.format(cal.getTime());
-       addItem(createDayItem(diaNo,diaName,"Este dia esta deawebo xD"));
-       Log.d("Create Item","Item creado");
+       createDayItem(diaNo, diaName, "Este dia esta deawebo xD");
+       Log.d("Create Item", "Item creado");
    }
 
-
-
-    public static void addItem(dayItem item){
-        ITEMS.add(item);
-        ITEM_MAP.put(item.nombreDia,item);
-        Log.d("AddItem","Item añadido");
+    public static void createDayItem(String day, String nombre, String contenido){
+       ITEM.addItem(day,nombre,contenido);
     }
-
-
-
-    public static dayItem createDayItem(String day, String nombre, String contenido){
-        return new dayItem(1,day,nombre,contenido);
-    }
-
 
     public static class dayItem{
-        private final int id;
-        public final String fechaDia;
-        public final String nombreDia;
-        public final String contenido;
+        public String fechaDia = "";
+        public String nombreDia = "";
+        public String contenido = "";
 
-        public dayItem(int id, String fechaDia, String nombreDia, String contenido) {
-            this.id = id;
+        public dayItem(){
+
+        }
+
+        public void addItem(String fechaDia, String nombreDia, String contenido) {
             this.fechaDia = fechaDia;
             this.nombreDia = nombreDia;
             this.contenido = contenido;
+            showData();
+        }
+
+        public void newItem(int dia, int mes){
+            Log.d("DATOS: ","Dia: "+dia);
+            Log.d("DATOS: ","Mes: "+mes);
+            String date = String.valueOf(dia)+"-"+String.valueOf(mes+1);
+            Log.d("DATOS: ","Date: "+date);
+            String day = date;
+            String name = DayNameformat.format(mes);
+            Log.d("DATOS: ",day+name);
+            String content = "Informacion del dia: "+day+"/"+name;
+            addItem(day,name,content);
+        }
+        public void showData(){
+            Log.d("ADDITEM: ", "FechaDia: "+this.fechaDia);
+            Log.d("ADDITEM: ", "NombreDia: "+this.nombreDia);
+            Log.d("ADDITEM: ", "Contenido: "+this.contenido);
+        }
+
+        public String getFechaDia() {
+            return fechaDia;
+        }
+
+        public String getNombreDia() {
+            return nombreDia;
+        }
+
+        public String getContenido() {
+            return contenido;
+        }
+
+        public dayItem getItem(){
+            return this;
         }
 
         @Override
         public String toString() {
-            return String.valueOf(id);
+            return fechaDia + nombreDia;
         }
     }
 }

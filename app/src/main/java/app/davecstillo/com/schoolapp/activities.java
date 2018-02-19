@@ -33,6 +33,7 @@ public class activities extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     RecyclerView recyclerView;
+    private static activitiesRecyclerView actRecicler;
 
 
     // TODO: Rename and change types of parameters
@@ -63,8 +64,6 @@ public class activities extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -72,23 +71,27 @@ public class activities extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_activites_content, container, false);
-        Log.e("NOTIF","Esta chiva va por aqui xD");
-
-        if(view instanceof RecyclerView){
-            Log.e("NOTIF","Esta chiva va luego de eso");
-            Context context = view.getContext();
-            recyclerView = (RecyclerView) view;
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(new activitiesRecyclerView(activitiesContent.ITEMS,mListener));
-
-        }
+        Log.e("NOTIF", "Esta chiva va por aqui xD");
+        actRecicler = new activitiesRecyclerView(activitiesContent.ITEM,mListener);
+        setRecicler(view,actRecicler);
 
         return view;
     }
 
-    public void sto(){
+    private void setRecicler(View view, activitiesRecyclerView actRecicler){
+        if (view instanceof RecyclerView) {
+            Log.e("NOTIF", "Esta chiva va luego de eso");
+            Context context = view.getContext();
+            recyclerView = (RecyclerView) view;
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.setAdapter(actRecicler);
 
-       recyclerView.setAdapter(new activitiesRecyclerView(activitiesContent.ITEMS,mListener));
+        }
+    }
+
+    public static void chgTxt(CalendarView cal,int dia, int mes,int yy){
+        actRecicler.setNewmValues(cal,dia,mes,yy);
+        actRecicler.changeTexts();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

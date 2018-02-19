@@ -16,6 +16,8 @@ import android.widget.CalendarView;
 
 import java.text.SimpleDateFormat;
 
+import app.davecstillo.com.schoolapp.Content.activitiesContent;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +34,8 @@ public class schedule_frame extends Fragment {
     private static CalendarView calendar;
     static long selectedDate;
     private OnFragmentInteractionListener mListener;
+    private View actividades;
+    private activities act;
 
 
     public static SimpleDateFormat DayNoformat = new SimpleDateFormat("dd-MM");
@@ -68,6 +72,7 @@ public class schedule_frame extends Fragment {
         // Inflate the layout for this fragment
         View view;
         view = inflater.inflate(R.layout.fragment_schedule_frame, container, false);
+        actividades = view.findViewById(R.id.activitiesFragment);
 
         calendar = (CalendarView) view.findViewById(R.id.calendarView);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -76,7 +81,7 @@ public class schedule_frame extends Fragment {
                 Log.d("Cambio la fecha","Nueva Fecha año " + String.valueOf(i));
                 Log.d("Cambio la fecha","Nueva Fecha mes " + String.valueOf(i1));
                 Log.d("Cambio la fecha","Nueva Fecha dia " + String.valueOf(i2));
-
+                activities.chgTxt(calendarView,i2,i1,i);
             }
         });
 

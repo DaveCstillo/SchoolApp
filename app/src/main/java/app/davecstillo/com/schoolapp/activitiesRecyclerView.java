@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -26,33 +27,31 @@ import app.davecstillo.com.schoolapp.activities.*;
 public class activitiesRecyclerView extends RecyclerView.Adapter<activitiesRecyclerView.ViewHolder> {
 
 
-    private final List<dayItem> mValues;
+    private dayItem mValues;
     private final OnFragmentInteractionListener mListener;
 
     ViewHolder holder;
 
-    public activitiesRecyclerView(List<dayItem> mValues, OnFragmentInteractionListener mListener) {
+    public activitiesRecyclerView(dayItem mValues, OnFragmentInteractionListener mListener) {
         this.mValues = mValues;
         this.mListener = mListener;
-        Log.d("mValues",String.valueOf(mValues.get(0).fechaDia));
+        Log.d("mValues",String.valueOf(mValues.getFechaDia()));
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_activities,parent,false);
-        Log.d("mValues",String.valueOf(mValues.get(0)));
+        mValues.showData();
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        this.holder = holder;
-        Log.d("mValues",String.valueOf(mValues.get(0)));
-            holder.mItem = mValues.get(0);
+            holder.mItem = mValues;
             Log.e("MITEM","Item" + holder.mItem);
-            holder.mDayName.setText(mValues.get(0).fechaDia);
-            holder.mDayDate.setText(mValues.get(0).nombreDia);
-            holder.Content.setText(mValues.get(0).contenido);
+            holder.mDayName.setText(mValues.getFechaDia());
+            holder.mDayDate.setText(mValues.getNombreDia());
+            holder.Content.setText(mValues.getContenido());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -63,19 +62,22 @@ public class activitiesRecyclerView extends RecyclerView.Adapter<activitiesRecyc
                 }
             });
 
+        this.holder = holder;
     }
 
-    public void changeTexts(String dayNo, String dayName, String content){
+    public void setNewmValues(CalendarView calendar, int dia, int mes, int yy) {
+        this.mValues.newItem(dia,mes);
+    }
 
-        holder.mDayName.setText(dayNo);
-        holder.mDayDate.setText(dayName);
-        holder.Content.setText(content);
-
+    public void changeTexts(){
+        holder.mDayName.setText(mValues.getFechaDia());
+        holder.mDayDate.setText(mValues.getNombreDia());
+        holder.Content.setText(mValues.getContenido());
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return 1;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
