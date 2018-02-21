@@ -78,10 +78,20 @@ public class schedule_frame extends Fragment {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                Log.w("i1","variable: "+i1);
+                i1+=1;
+                Log.w("i1","variable: "+i1);
+                if(i1<10){
+                    Log.w("mes","variable: "+i1);
+                    activities.chgTxt(calendarView,i2,i1,i);
+                }
+                else{
+                    activities.chgTxt(calendarView,i2,i1,i);
+                }
                 Log.d("Cambio la fecha","Nueva Fecha año " + String.valueOf(i));
                 Log.d("Cambio la fecha","Nueva Fecha mes " + String.valueOf(i1));
                 Log.d("Cambio la fecha","Nueva Fecha dia " + String.valueOf(i2));
-                activities.chgTxt(calendarView,i2,i1,i);
+
             }
         });
 

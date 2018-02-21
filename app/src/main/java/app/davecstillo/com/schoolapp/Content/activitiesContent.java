@@ -7,6 +7,7 @@ import android.widget.CalendarView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class activitiesContent {
     public static dayItem ITEM;
 
     public static SimpleDateFormat DayNoformat = new SimpleDateFormat("dd-MM");
-    public static SimpleDateFormat DayNameformat = new SimpleDateFormat("E");
+    public static SimpleDateFormat DayNameformat = new SimpleDateFormat("EE");
 
 
 
@@ -58,12 +59,16 @@ public class activitiesContent {
         }
 
         public void newItem(int dia, int mes){
+            String date = String.valueOf(dia)+"0"+String.valueOf(mes);
+            long fecha = Integer.parseInt(date);
+            Log.w("fecha","variable: "+fecha);
+            Date dat = new Date();
+            Log.w("DAT","variable: "+dat);
             Log.d("DATOS: ","Dia: "+dia);
             Log.d("DATOS: ","Mes: "+mes);
-            String date = String.valueOf(dia)+"-"+String.valueOf(mes+1);
             Log.d("DATOS: ","Date: "+date);
-            String day = date;
-            String name = DayNameformat.format(mes);
+            String day = DayNoformat.format(dat);
+            String name = DayNameformat.format(dat);
             Log.d("DATOS: ",day+name);
             String content = "Informacion del dia: "+day+"/"+name;
             addItem(day,name,content);
