@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/notas"
+            android:icon="@drawable/ic_class"
+            android:title="Notas" />
+        <item
+            android:id="@+id/reportes"
+            android:icon="@drawable/ic_assignment"
+            android:title="Reportes" />
+        <item
+            android:id="@+id/Horarios"
+            android:icon="@drawable/ic_date_range"
+            android:title="Horarios" />
+        <item
+            android:id="@+id/tareas"
+            android:icon="@drawable/ic_import_contacts"
+            android:title="Tareas" />
+    </group>
+
+    <item android:title="Comunicacion">
+        <menu>
+            <item
+                android:id="@+id/teachers_chat"
+                android:icon="@drawable/ic_question_answer"
+                android:title="Mensajes a maestros" />
+
+        </menu>
+    </item>
+
+</menu>
