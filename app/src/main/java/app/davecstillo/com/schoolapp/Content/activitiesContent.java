@@ -58,11 +58,13 @@ public class activitiesContent {
             showData();
         }
 
-        public void newItem(int dia, int mes){
+        public void newItem(CalendarView cal,int dia, int mes){
             String date = String.valueOf(dia)+"0"+String.valueOf(mes);
             long fecha = Integer.parseInt(date);
             Log.w("fecha","variable: "+fecha);
             Date dat = new Date();
+            Log.w("DATE","variable: "+cal.getDate());
+            dat.setTime(cal.getDate());
             Log.w("DAT","variable: "+dat);
             Log.d("DATOS: ","Dia: "+dia);
             Log.d("DATOS: ","Mes: "+mes);

@@ -66,7 +66,7 @@ public class activitiesRecyclerView extends RecyclerView.Adapter<activitiesRecyc
     }
 
     public void setNewmValues(CalendarView calendar, int dia, int mes, int yy) {
-        this.mValues.newItem(dia,mes);
+        this.mValues.newItem(calendar,dia,mes);
     }
 
     public void changeTexts(){
