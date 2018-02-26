@@ -1,46 +1,40 @@
 package app.davecstillo.com.schoolapp;
 
 import android.content.Context;
-import android.icu.util.Calendar;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
-
-import java.text.SimpleDateFormat;
-
-import app.davecstillo.com.schoolapp.Content.activitiesContent;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link schedule_frame.OnFragmentInteractionListener} interface
+ * {@link initFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link schedule_frame#newInstance} factory method to
+ * Use the {@link initFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class schedule_frame extends BaseFragment {
+public class initFragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
 
     // TODO: Rename and change types of parameters
-    private static CalendarView calendar;
-    static long selectedDate;
     private OnFragmentInteractionListener mListener;
-    private View actividades;
-    private activities act;
 
 
-    public static SimpleDateFormat DayNoformat = new SimpleDateFormat("dd-MM");
+    View schedule;
+    TabHost tabHost;
+    LinearLayout tab1, tab2;
 
-    public schedule_frame() {
+    CalendarView cal;
+
+
+    public initFragment() {
         // Required empty public constructor
     }
 
@@ -48,17 +42,16 @@ public class schedule_frame extends BaseFragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment schedule_frame.
+     * @return A new instance of fragment initFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static schedule_frame newInstance() {
-        schedule_frame fragment = new schedule_frame();
+    public static initFragment newInstance(String param1, String param2) {
+        initFragment fragment = new initFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,30 +63,31 @@ public class schedule_frame extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view;
-        view = inflater.inflate(R.layout.fragment_schedule_frame, container, false);
-        actividades = view.findViewById(R.id.activitiesFragment);
+        View view = inflater.inflate(R.layout.fragment_init, container, false);
 
-        calendar = (CalendarView) view.findViewById(R.id.calendarView);
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                Log.w("i1","variable: "+i1);
-                i1+=1;
-                Log.w("i1","variable: "+i1);
-                if(i1<10){
-                    Log.w("mes","variable: "+i1);
-                    activities.chgTxt(calendarView,i2,i1,i);
-                }
-                else{
-                    activities.chgTxt(calendarView,i2,i1,i);
-                }
-                Log.d("Cambio la fecha","Nueva Fecha año " + String.valueOf(i));
-                Log.d("Cambio la fecha","Nueva Fecha mes " + String.valueOf(i1));
-                Log.d("Cambio la fecha","Nueva Fecha dia " + String.valueOf(i2));
 
-            }
-        });
+
+        cal = (CalendarView) view.findViewById(R.id.calendarView);
+        tab1 = (LinearLayout) view.findViewById(R.id.tab1);
+        tab2 = (LinearLayout) view.findViewById(R.id.tab2);
+
+        tabHost = (TabHost) view.findViewById(R.id.tabHost);
+        tabHost.setup();
+
+        TabHost.TabSpec spec = tabHost.newTabSpec("FEED");
+        spec.setContent(R.id.tab1);
+        spec.setIndicator("FEED");
+        tabHost.addTab(spec);
+
+        spec = tabHost.newTabSpec("SCHEDULE");
+        spec.setContent(R.id.tab2);
+        spec.setIndicator("SCHEDULE");
+        tabHost.addTab(spec);
+
+        schedule = view.findViewById(R.id.schedule_fragment);
+        schedule_frame.newInstance();
+
+
 
         return view;
     }

@@ -17,22 +17,19 @@ import android.view.MenuItem;
 import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.Toast;
 
+import app.davecstillo.com.schoolapp.Content.GradesContent;
 import app.davecstillo.com.schoolapp.Content.activitiesContent;
 import app.davecstillo.com.schoolapp.dummy.DummyContent;
 
-public class menuActivity extends AppCompatActivity
+public class menuActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         feedFragment.OnListFragmentInteractionListener,
         schedule_frame.OnFragmentInteractionListener,
-        activities.OnFragmentInteractionListener {
-
-    View schedule;
-    TabHost tabHost;
-    LinearLayout tab1, tab2;
-
-    CalendarView cal;
-
+        activities.OnFragmentInteractionListener,
+        initFragment.OnFragmentInteractionListener,
+        gradesFragment.OnListFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,28 +44,7 @@ public class menuActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-
-        cal = (CalendarView) findViewById(R.id.calendarView);
-        tab1 = (LinearLayout) findViewById(R.id.tab1);
-        tab2 = (LinearLayout) findViewById(R.id.tab2);
-
-        tabHost = (TabHost) findViewById(R.id.tabHost);
-        tabHost.setup();
-
-        TabHost.TabSpec spec = tabHost.newTabSpec("FEED");
-        spec.setContent(R.id.tab1);
-        spec.setIndicator("FEED");
-        tabHost.addTab(spec);
-
-        spec = tabHost.newTabSpec("SCHEDULE");
-        spec.setContent(R.id.tab2);
-        spec.setIndicator("SCHEDULE");
-        tabHost.addTab(spec);
-
-        schedule = findViewById(R.id.schedule_fragment);
-        schedule_frame.newInstance();
-
-
+        changeFragment(new initFragment());
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -112,18 +88,32 @@ public class menuActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.notas) {
-            // Handle the camera action
+        BaseFragment f = null;
+
+        if(id==R.id.homePage){
+          f = new initFragment();
+
+        } else if (id == R.id.notas) {
+            f = new gradesFragment();
+
         } else if (id == R.id.reportes) {
+            Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.Horarios) {
+            Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.tareas) {
+            Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.teachers_chat) {
+            Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
+
+        } else if (id == R.id.principal_chat) {
+            Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
 
         }
 
+        changeFragment(f);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -141,6 +131,11 @@ public class menuActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(activitiesContent.dayItem item) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(GradesContent.GradeItem item) {
 
     }
 }

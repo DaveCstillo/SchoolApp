@@ -1,46 +1,30 @@
 package app.davecstillo.com.schoolapp;
 
 import android.content.Context;
-import android.icu.util.Calendar;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-
-import java.text.SimpleDateFormat;
-
-import app.davecstillo.com.schoolapp.Content.activitiesContent;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link schedule_frame.OnFragmentInteractionListener} interface
+ * {@link notasFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link schedule_frame#newInstance} factory method to
+ * Use the {@link notasFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class schedule_frame extends BaseFragment {
+public class notasFragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
 
     // TODO: Rename and change types of parameters
-    private static CalendarView calendar;
-    static long selectedDate;
+
     private OnFragmentInteractionListener mListener;
-    private View actividades;
-    private activities act;
 
-
-    public static SimpleDateFormat DayNoformat = new SimpleDateFormat("dd-MM");
-
-    public schedule_frame() {
+    public notasFragment() {
         // Required empty public constructor
     }
 
@@ -48,17 +32,16 @@ public class schedule_frame extends BaseFragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment schedule_frame.
+     * @return A new instance of fragment notasFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static schedule_frame newInstance() {
-        schedule_frame fragment = new schedule_frame();
+    public static notasFragment newInstance(String param1, String param2) {
+        notasFragment fragment = new notasFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,32 +53,7 @@ public class schedule_frame extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view;
-        view = inflater.inflate(R.layout.fragment_schedule_frame, container, false);
-        actividades = view.findViewById(R.id.activitiesFragment);
-
-        calendar = (CalendarView) view.findViewById(R.id.calendarView);
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                Log.w("i1","variable: "+i1);
-                i1+=1;
-                Log.w("i1","variable: "+i1);
-                if(i1<10){
-                    Log.w("mes","variable: "+i1);
-                    activities.chgTxt(calendarView,i2,i1,i);
-                }
-                else{
-                    activities.chgTxt(calendarView,i2,i1,i);
-                }
-                Log.d("Cambio la fecha","Nueva Fecha año " + String.valueOf(i));
-                Log.d("Cambio la fecha","Nueva Fecha mes " + String.valueOf(i1));
-                Log.d("Cambio la fecha","Nueva Fecha dia " + String.valueOf(i2));
-
-            }
-        });
-
-        return view;
+        return inflater.inflate(R.layout.fragment_notas, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

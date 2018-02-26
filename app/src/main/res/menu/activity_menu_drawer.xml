@@ -5,22 +5,33 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/notas"
-            android:icon="@drawable/ic_class"
-            android:title="Notas" />
-        <item
-            android:id="@+id/reportes"
-            android:icon="@drawable/ic_assignment"
-            android:title="Reportes" />
-        <item
-            android:id="@+id/Horarios"
-            android:icon="@drawable/ic_date_range"
-            android:title="Horarios" />
-        <item
-            android:id="@+id/tareas"
-            android:icon="@drawable/ic_import_contacts"
-            android:title="Tareas" />
+            android:id="@+id/homePage"
+            android:icon="@drawable/ic_home"
+            android:title="Home Page"/>
     </group>
+
+    <item
+        android:title="Informacion sobre Estudiantes">
+        <menu>
+
+            <item
+                android:id="@+id/notas"
+                android:icon="@drawable/ic_class"
+                android:title="Notas" />
+            <item
+                android:id="@+id/reportes"
+                android:icon="@drawable/ic_assignment"
+                android:title="Reportes" />
+            <item
+                android:id="@+id/Horarios"
+                android:icon="@drawable/ic_date_range"
+                android:title="Horarios" />
+            <item
+                android:id="@+id/tareas"
+                android:icon="@drawable/ic_import_contacts"
+                android:title="Tareas" />
+        </menu>
+    </item>
 
     <item android:title="Comunicacion">
         <menu>
@@ -28,6 +39,10 @@
                 android:id="@+id/teachers_chat"
                 android:icon="@drawable/ic_question_answer"
                 android:title="Mensajes a maestros" />
+            <item
+                android:id="@+id/principal_chat"
+                android:icon="@drawable/ic_message"
+                android:title="Mensajes a Director" />
 
         </menu>
     </item>

@@ -2,7 +2,6 @@ package app.davecstillo.com.schoolapp;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,12 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import app.davecstillo.com.schoolapp.Content.WeekContent;
-import app.davecstillo.com.schoolapp.dummy.DummyContent;
-import app.davecstillo.com.schoolapp.dummy.DummyContent.DummyItem;
-
-import java.util.Calendar;
-import java.util.List;
+import app.davecstillo.com.schoolapp.Content.GradesContent;
 
 /**
  * A fragment representing a list of Items.
@@ -23,7 +17,7 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class weekFragment extends Fragment {
+public class gradesFragment extends BaseFragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -36,13 +30,13 @@ public class weekFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public weekFragment() {
+    public gradesFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static weekFragment newInstance(int columnCount) {
-        weekFragment fragment = new weekFragment();
+    public static gradesFragment newInstance(int columnCount) {
+        gradesFragment fragment = new gradesFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -61,7 +55,7 @@ public class weekFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_week_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_grades_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -72,7 +66,7 @@ public class weekFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyweekRecyclerViewAdapter(WeekContent.ITEMS, mListener));
+            recyclerView.setAdapter(new gradesRecyclerViewAdapter(GradesContent.ITEMS, mListener));
         }
         return view;
     }
@@ -107,6 +101,6 @@ public class weekFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(WeekContent.WeekItem item);
+        void onListFragmentInteraction(GradesContent.GradeItem item);
     }
 }
