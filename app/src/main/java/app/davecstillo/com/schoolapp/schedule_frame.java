@@ -81,6 +81,9 @@ public class schedule_frame extends BaseFragment {
                 Log.w("i1","variable: "+i1);
                 i1+=1;
                 Log.w("i1","variable: "+i1);
+
+                Log.w("CAL-DATE","variable: "+calendarView.getDate());
+                Log.w("CAL-DATE2","variable format: "+ DayNoformat.format(calendarView.getDate()));
                 if(i1<10){
                     Log.w("mes","variable: "+i1);
                     activities.chgTxt(calendarView,i2,i1,i);

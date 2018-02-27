@@ -89,13 +89,15 @@ public class menuActivity extends BaseActivity
         int id = item.getItemId();
 
         BaseFragment f = null;
+        boolean exist = false;
 
         if(id==R.id.homePage){
           f = new initFragment();
+          exist = true;
 
         } else if (id == R.id.notas) {
             f = new gradesFragment();
-
+            exist = true;
         } else if (id == R.id.reportes) {
             Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
 
@@ -112,8 +114,9 @@ public class menuActivity extends BaseActivity
             Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
 
         }
-
+        if(exist)
         changeFragment(f);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

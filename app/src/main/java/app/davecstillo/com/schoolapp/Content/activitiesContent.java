@@ -4,6 +4,7 @@ package app.davecstillo.com.schoolapp.Content;
 import android.util.Log;
 import android.widget.CalendarView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,21 +23,34 @@ public class activitiesContent {
 
     public static SimpleDateFormat DayNoformat = new SimpleDateFormat("dd-MM");
     public static SimpleDateFormat DayNameformat = new SimpleDateFormat("EE");
+    public static SimpleDateFormat TextoDate= new SimpleDateFormat("dd-MM-yyyy");
 
-
-
-   static {
-       Calendar cal;
-       cal = Calendar.getInstance();
+    public activitiesContent() {
+        Calendar cal;
+        cal = Calendar.getInstance();
         ITEM = new dayItem();
-       Log.e("DayNoFormat", "Format: " + DayNoformat.format(cal.getTime()));
-       Log.e("DayNameFormat", "Format: " + DayNameformat.format(cal.getTime()));
+        Log.e("DayNoFormat", "Format: " + DayNoformat.format(cal.getTime()));
+        Log.e("DayNameFormat", "Format: " + DayNameformat.format(cal.getTime()));
 
-       String diaNo = DayNoformat.format(cal.getTime());
-       String diaName = DayNameformat.format(cal.getTime());
-       createDayItem(diaNo, diaName, "Este dia esta deawebo xD");
-       Log.d("Create Item", "Item creado");
-   }
+        String diaNo = DayNoformat.format(cal.getTime());
+        String diaName = DayNameformat.format(cal.getTime());
+        createDayItem(diaNo, diaName, "Este dia esta deawebo xD");
+        Log.d("Create Item", "Item creado");
+
+    }
+
+//    static {
+//       Calendar cal;
+//       cal = Calendar.getInstance();
+//        ITEM = new dayItem();
+//       Log.e("DayNoFormat", "Format: " + DayNoformat.format(cal.getTime()));
+//       Log.e("DayNameFormat", "Format: " + DayNameformat.format(cal.getTime()));
+//
+//       String diaNo = DayNoformat.format(cal.getTime());
+//       String diaName = DayNameformat.format(cal.getTime());
+//       createDayItem(diaNo, diaName, "Este dia esta deawebo xD");
+//       Log.d("Create Item", "Item creado");
+//   }
 
     public static void createDayItem(String day, String nombre, String contenido){
        ITEM.addItem(day,nombre,contenido);
@@ -58,13 +72,19 @@ public class activitiesContent {
             showData();
         }
 
-        public void newItem(CalendarView cal,int dia, int mes){
-            String date = String.valueOf(dia)+"0"+String.valueOf(mes);
-            long fecha = Integer.parseInt(date);
-            Log.w("fecha","variable: "+fecha);
+        public void newItem(CalendarView cal,int dia, int mes,int yy){
+            String date = String.valueOf(dia)+"-0"+String.valueOf(mes)+"-"+String.valueOf(yy);
+            Log.w("fecha","variable: "+date);
             Date dat = new Date();
+            Date Fdat = new Date();
+            try {
+                Fdat = TextoDate.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Log.w("fecha","Formato: "+Fdat.getTime());
             Log.w("DATE","variable: "+cal.getDate());
-            dat.setTime(cal.getDate());
+            dat.setTime(Fdat.getTime());
             Log.w("DAT","variable: "+dat);
             Log.d("DATOS: ","Dia: "+dia);
             Log.d("DATOS: ","Mes: "+mes);
