@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import app.davecstillo.com.schoolapp.Content.GradesContent;
 import app.davecstillo.com.schoolapp.Content.activitiesContent;
+import app.davecstillo.com.schoolapp.Content.alumnosContent;
 import app.davecstillo.com.schoolapp.dummy.DummyContent;
 
 public class menuActivity extends BaseActivity
@@ -29,7 +30,8 @@ public class menuActivity extends BaseActivity
         schedule_frame.OnFragmentInteractionListener,
         activities.OnFragmentInteractionListener,
         initFragment.OnFragmentInteractionListener,
-        gradesFragment.OnListFragmentInteractionListener{
+        gradesFragment.OnListFragmentInteractionListener,
+        alumnosListado.OnListFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +101,8 @@ public class menuActivity extends BaseActivity
             f = new gradesFragment();
             exist = true;
         } else if (id == R.id.reportes) {
-            Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
+           f= new alumnosListado();
+           exist=true;
 
         } else if (id == R.id.Horarios) {
             Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
@@ -139,6 +142,11 @@ public class menuActivity extends BaseActivity
 
     @Override
     public void onListFragmentInteraction(GradesContent.GradeItem item) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(alumnosContent.alumno item) {
 
     }
 }

@@ -1,7 +1,6 @@
 package app.davecstillo.com.schoolapp;
 
 import android.content.Context;
-import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,8 +14,6 @@ import android.view.ViewGroup;
 import android.widget.CalendarView;
 
 import java.text.SimpleDateFormat;
-
-import app.davecstillo.com.schoolapp.Content.activitiesContent;
 
 
 /**

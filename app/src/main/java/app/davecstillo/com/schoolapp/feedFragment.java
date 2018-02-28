@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import app.davecstillo.com.schoolapp.dummy.DummyContent;
 import app.davecstillo.com.schoolapp.dummy.DummyContent.DummyItem;
 
-import java.util.List;
-
 /**
  * A fragment representing a list of Items.
  * <p/>

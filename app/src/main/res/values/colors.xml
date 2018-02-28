@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="gradeBack">#EBF5FB</color>
+    <color name="almGradeBack">#FEF9E7</color>
 </resources>
