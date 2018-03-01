@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import app.davecstillo.com.schoolapp.Content.alumnosContent;
 import app.davecstillo.com.schoolapp.Content.alumnosContent.alumno;
@@ -29,6 +30,7 @@ public class alumnosRecyclerView extends RecyclerView.Adapter<alumnosRecyclerVie
 
     private List<alumno> mValues;
     private final OnListFragmentInteractionListener mListener;
+    private int fragmentID;
 
     ViewHolder holder;
 
@@ -37,6 +39,7 @@ public class alumnosRecyclerView extends RecyclerView.Adapter<alumnosRecyclerVie
         this.mListener = mListener;
         Log.d("mValues",String.valueOf(mValues));
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -48,7 +51,8 @@ public class alumnosRecyclerView extends RecyclerView.Adapter<alumnosRecyclerVie
     public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
             Log.e("MITEM","Item" + holder.mItem);
-            holder.button.setText(mValues.get(position).toString());
+            holder.name.setText(mValues.get(position).toString());
+            holder.grade.setText(mValues.get(position).getGrade());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -64,7 +68,7 @@ public class alumnosRecyclerView extends RecyclerView.Adapter<alumnosRecyclerVie
 
 
     public void changeTexts(){
-        holder.button.setText(mValues.toString());
+        holder.name.setText(mValues.toString());
 
     }
 
@@ -75,13 +79,15 @@ public class alumnosRecyclerView extends RecyclerView.Adapter<alumnosRecyclerVie
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public Button button;
+        public TextView name;
+        public TextView grade;
         public alumno mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            button = (Button) view.findViewById(R.id.alumnoBtn);
+            name = (TextView) view.findViewById(R.id.nameAlm);
+            grade = (TextView) view.findViewById(R.id.gradeTxt);
         }
 
     }

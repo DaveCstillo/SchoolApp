@@ -1,23 +1,16 @@
 package app.davecstillo.com.schoolapp;
 
-import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CalendarView;
-import android.widget.LinearLayout;
-import android.widget.TabHost;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
 
 import app.davecstillo.com.schoolapp.Content.GradesContent;
 import app.davecstillo.com.schoolapp.Content.activitiesContent;
@@ -33,12 +26,17 @@ public class menuActivity extends BaseActivity
         gradesFragment.OnListFragmentInteractionListener,
         alumnosListado.OnListFragmentInteractionListener{
 
+    private int fragmentID;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+       fragmentID=0;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -89,35 +87,30 @@ public class menuActivity extends BaseActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         BaseFragment f = null;
-        boolean exist = false;
 
         if(id==R.id.homePage){
-          f = new initFragment();
-          exist = true;
-
+          f=new initFragment();
         } else if (id == R.id.notas) {
-            f = new gradesFragment();
-            exist = true;
+            fragmentID=R.id.notas;
+            f=new alumnosListado();
         } else if (id == R.id.reportes) {
-           f= new alumnosListado();
-           exist=true;
-
+            fragmentID=R.id.reportes;
+            f=new alumnosListado();
         } else if (id == R.id.Horarios) {
-            Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
-
+            fragmentID=R.id.Horarios;
+            f=new alumnosListado();
         } else if (id == R.id.tareas) {
-            Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
-
+            fragmentID=R.id.tareas;
+            f=new alumnosListado();
         } else if (id == R.id.teachers_chat) {
-            Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
-
+            fragmentID=R.id.teachers_chat;
+            f=new alumnosListado();
         } else if (id == R.id.principal_chat) {
-            Toast.makeText(getApplicationContext(),"Seccion aun no disponible",Toast.LENGTH_LONG).show();
-
+            fragmentID=R.id.principal_chat;
+            f=new alumnosListado();
         }
-        if(exist)
+
         changeFragment(f);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -145,8 +138,29 @@ public class menuActivity extends BaseActivity
 
     }
 
+
     @Override
     public void onListFragmentInteraction(alumnosContent.alumno item) {
+        BaseFragment f;
+        switch (fragmentID) {
+            case R.id.notas:
+                f = new gradesFragment();
+                break;
+            case R.id.reportes:
+                f = new initFragment();
+                break;
+            case R.id.Horarios:
+                f = new initFragment();
+                break;
+            case R.id.tareas:
+                f = new initFragment();
+                break;
+            default:
+                f = new initFragment();
+                break;
+        }
+
+        changeFragment(f);
 
     }
 }

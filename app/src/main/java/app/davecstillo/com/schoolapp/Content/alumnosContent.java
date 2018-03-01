@@ -57,16 +57,16 @@ public class alumnosContent {
     private static String generateGrade(int position){
         switch (position){
             case 1:
-                return "PP";
+                return "PrePrimaria";
             case 2:
-                return "1P";
+                return "1ro Primaria";
             case 3:
-                return "3P";
+                return "3ro Primaria";
             case 4:
-                return "2S";
+                return "2do Secundaria";
             case 5:
             default:
-                return "4B";
+                return "4to Bachiller";
 
         }
     }
@@ -94,7 +94,8 @@ public class alumnosContent {
         public String nombre, apellido;
         public String grado;
         public String seccion;
-//
+
+
 //        public alumno(int idEstudiante) {
 //            this.idEstudiante = idEstudiante;
 //        }
@@ -111,9 +112,14 @@ public class alumnosContent {
             return nombre+" "+apellido+" Grado: "+grado+"-"+seccion;
         }
 
+        public String getGrade(){
+            return grado+"-"+seccion;
+        }
+
         @Override
         public String toString() {
             return apellido+", "+nombre;
         }
+
     }
 }

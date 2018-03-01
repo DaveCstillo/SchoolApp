@@ -29,6 +29,8 @@ public class alumnosListado extends BaseFragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
 
+    private int fragmentID;
+
 
     public static alumnosListado newInstance(int columnCount) {
         alumnosListado fragment = new alumnosListado();
@@ -36,6 +38,10 @@ public class alumnosListado extends BaseFragment {
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public void setFID(int id){
+        fragmentID=id;
     }
 
     @Override
