@@ -24,5 +24,6 @@ public class BaseActivity extends AppCompatActivity{
 
         trans.commit();
 
+        this.setTitle(f.getTitle());
     }
 }

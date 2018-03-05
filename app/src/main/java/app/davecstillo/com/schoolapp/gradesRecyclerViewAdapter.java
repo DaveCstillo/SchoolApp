@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import app.davecstillo.com.schoolapp.Content.GradesContent;
-import app.davecstillo.com.schoolapp.gradesFragment.OnListFragmentInteractionListener;
-import app.davecstillo.com.schoolapp.Content.GradesContent.GradeItem;
-
 import java.util.List;
+
+import app.davecstillo.com.schoolapp.Content.GradesContent;
+import app.davecstillo.com.schoolapp.Content.GradesContent.GradeItem;
+import app.davecstillo.com.schoolapp.gradesFragment.OnListFragmentInteractionListener;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link GradesContent} and makes a call to the
@@ -22,7 +22,6 @@ public class gradesRecyclerViewAdapter extends RecyclerView.Adapter<gradesRecycl
 
     private final List<GradeItem> mValues;
     private final OnListFragmentInteractionListener mListener;
-
     public gradesRecyclerViewAdapter(List<GradeItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;

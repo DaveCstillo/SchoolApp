@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import app.davecstillo.com.schoolapp.Content.GradesContent;
+import app.davecstillo.com.schoolapp.Content.alumnosContent;
 
 /**
  * A fragment representing a list of Items.
@@ -25,6 +26,8 @@ public class gradesFragment extends BaseFragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
+
+    public alumnosContent.alumno alumno;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -71,6 +74,14 @@ public class gradesFragment extends BaseFragment {
         return view;
     }
 
+    public void setAlumno(alumnosContent.alumno alumno) {
+        this.alumno = alumno;
+    }
+
+    @Override
+    public String getTitle() {
+        return alumno.toString();
+    }
 
     @Override
     public void onAttach(Context context) {

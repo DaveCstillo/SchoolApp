@@ -40,6 +40,11 @@ public class alumnosListado extends BaseFragment {
         return fragment;
     }
 
+    @Override
+    public String getTitle() {
+        return "Calificaciones";
+    }
+
     public void setFID(int id){
         fragmentID=id;
     }

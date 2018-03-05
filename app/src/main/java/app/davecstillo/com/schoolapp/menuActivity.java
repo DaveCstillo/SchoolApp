@@ -144,7 +144,9 @@ public class menuActivity extends BaseActivity
         BaseFragment f;
         switch (fragmentID) {
             case R.id.notas:
-                f = new gradesFragment();
+                gradesFragment fragment = new gradesFragment();
+                fragment.setAlumno(item);
+                f= fragment;
                 break;
             case R.id.reportes:
                 f = new initFragment();
