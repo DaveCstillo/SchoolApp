@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,8 @@ public class alumnosListado extends BaseFragment {
     private OnListFragmentInteractionListener mListener;
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
+
+    private httpHandler handler = new httpHandler();
 
     private int fragmentID;
 
@@ -66,6 +69,8 @@ public class alumnosListado extends BaseFragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+        String txt = handler.post("https://dacastest.000webhostapp.com/app.php");
+        Log.d("Metodo Post", txt);
     }
 
     @Nullable
