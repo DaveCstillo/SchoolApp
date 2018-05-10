@@ -55,6 +55,7 @@ public class initFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        httpHandler.instance = new httpHandler("https://dacastest.000webhostapp.com/");
         if (getArguments() != null) {
         }
     }

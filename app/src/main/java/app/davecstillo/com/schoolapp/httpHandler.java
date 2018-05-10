@@ -13,21 +13,39 @@ import org.w3c.dom.Entity;
 
 public class httpHandler {
 
-    public  String post(String posturl){
+    private String url;
 
+
+    public static httpHandler instance;
+
+    public httpHandler(String url){
+        this.url = url;
+    }
+
+    public  String post(final String posturl) throws Exception{
+        final String text;
         Log.d("path:",posturl);
-        try{
 
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(posturl);
+        Thread thread = new Thread(new Runnable() {
 
-            HttpResponse resp = httpClient.execute(httpPost);
-            HttpEntity entity = resp.getEntity();
+            @Override
+            public void run() {
+                try  {
 
-            String text = EntityUtils.toString(entity);
+                    HttpClient httpClient = new DefaultHttpClient();
+                    HttpPost httpPost = new HttpPost(posturl);
 
-            return text;
+                    HttpResponse resp = httpClient.execute(httpPost);
+                    HttpEntity entity = resp.getEntity();
 
-        }catch(Exception e){return "error";}
+                    text = EntityUtils.toString(entity);
+
+
+                } catch (Exception e) {e.printStackTrace();}
+            }
+        });
+
+        thread.start();
+
     }
 }
