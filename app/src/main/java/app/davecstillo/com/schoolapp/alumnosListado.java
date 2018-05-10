@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.JsonElement;
+
 import app.davecstillo.com.schoolapp.Content.alumnosContent;
 
 /**
@@ -30,7 +32,6 @@ public class alumnosListado extends BaseFragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
 
-    private httpHandler handler = new httpHandler();
 
     private int fragmentID;
 
@@ -69,8 +70,7 @@ public class alumnosListado extends BaseFragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
-        String txt = handler.post("https://dacastest.000webhostapp.com/app.php");
-        Log.d("Metodo Post", txt);
+       callList("app.php");
     }
 
     @Nullable
@@ -90,6 +90,19 @@ public class alumnosListado extends BaseFragment {
         }
         return view;
     }
+
+    public void callList(String path){
+        new BackgroundTask<JsonElement>(() -> httpHandler.instance.getJson(path), (json, exception)->
+        {
+            if(exception!=null){
+                Log.d("Error",exception.getMessage());
+            }
+            if(json!=null){
+                Log.d("Exito","lel");
+            }
+        }).execute();
+    }
+
 
     @Override
     public void onDetach() {
