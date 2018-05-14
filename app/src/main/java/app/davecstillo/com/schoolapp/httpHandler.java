@@ -29,38 +29,13 @@ public class httpHandler {
 
     public httpHandler(String url){
         this.url = url;
+        parser = new JsonParser();
     }
 
-    public  String post(final String posturl) throws Exception{
-        final String text;
-        Log.d("path:",posturl);
-
-        Thread thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                try  {
-
-                    HttpClient httpClient = new DefaultHttpClient();
-                    HttpPost httpPost = new HttpPost(posturl);
-
-                    HttpResponse resp = httpClient.execute(httpPost);
-                    HttpEntity entity = resp.getEntity();
-
-
-
-
-                } catch (Exception e) {e.printStackTrace();}
-            }
-        });
-
-        thread.start();
-        return "Nada we";
-    }
 
     public JsonElement getJson(String path) throws Exception
     {
-        Log.d("path", path);
+        Log.i("path", path);
         StringBuffer chaine = new StringBuffer("");
         URL url = new URL(this.url + path);
         HttpURLConnection connection = (HttpURLConnection)url.openConnection();
@@ -74,8 +49,8 @@ public class httpHandler {
         while ((line = rd.readLine()) != null) {
             chaine.append(line);
         }
-        Log.d("Json", chaine.toString());
-        Log.d("Json2", String.valueOf(parser.parse(chaine.toString())));
+        Log.i("Json", chaine.toString());
+        Log.i("Json2", String.valueOf(parser.parse(chaine.toString())));
         return parser.parse(chaine.toString());
     }
 }

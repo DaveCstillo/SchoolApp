@@ -13,8 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class Login extends AppCompatActivity {
 
@@ -26,35 +30,100 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        httpHandler.instance = new httpHandler("https://dacastest.000webhostapp.com/");
+
+
         codeEdit = (EditText) findViewById(R.id.codeEdit);
         userEdit = (EditText) findViewById(R.id.userEdit);
         passEdit = (EditText) findViewById(R.id.passEdit);
 
         button = (Button) findViewById(R.id.loginBtn);
 
-        button.setOnClickListener(view ->
-
-                Log.d("Login","Datos: code: "+codeEdit.getText()+" user: "+userEdit.getText()+" pass: "+passEdit.getText())
-            
-
-        );
-
+        button.setOnClickListener(view ->{ login();});
 
 
     }
 
+    private void login() {
 
-    private void callList(String path){
-        new BackgroundTask<JsonElement>(()-> httpHandler.instance.getJson(path), (json, exception)->{
-            if(exception!=null){
+        StringBuilder path = new StringBuilder("login.php?user=");
+        path.append(userEdit.getText());
+        path.append("&pass=");
+        path.append(passEdit.getText());
+
+
+        String url = path.toString();
+        url = url.replace(" ","%20");
+
+        Log.d("PATH", url);
+        String finalUrl = url;
+
+
+        new BackgroundTask<JsonElement>(() -> httpHandler.instance.getJson(finalUrl), (json, exception) -> {
+            if (exception != null) {
+                Log.e("JSON ERROR", exception.getMessage());
 
             }
-            if(json!=null){
-                Intent intent = new Intent(getApplicationContext(), menuActivity.class);
-                startActivity(intent);
+            if (json != null) {
+                Log.d("JSON", json.toString());
+
+
+                JsonArray array = null;
+                JsonObject objct = null;
+
+                if (json instanceof JsonObject) {
+                    objct = json.getAsJsonObject();
+                } else if (json instanceof JsonArray) {
+                    array = json.getAsJsonArray();
+                }
+
+                Log.d("JSON OBJECT", objct.toString());
+                //Log.d("JSON ARRAY",array.toString());
+
+                Log.d("Object", json.getAsJsonObject().get("usuario").toString());
+
+                Log.d("JSON OBJECT", json.getAsJsonObject().get("usuario").getAsJsonArray().toString());
+
+                for (JsonElement res : json.getAsJsonObject().get("usuario").getAsJsonArray()) {
+//                    Log.d("RES", res.toString());
+//                    Log.d("USER", res.getAsJsonObject().get("USER").toString());
+                    if(res.getAsJsonObject().get("Result")!=null) {
+                    //if (json.getAsJsonObject().get("usuario").equals("No Valido")) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Los datos no son correctos", Toast.LENGTH_LONG);
+                        toast.show();
+                        codeEdit.setText("");
+                        userEdit.setText("");
+                        passEdit.setText("");
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), menuActivity.class);
+                        startActivity(intent);
+                    }
+                }
             }
+
         }).execute();
     }
+
+
+
+    private JsonObject parseJObject(JsonElement jElement){
+
+
+        if (jElement instanceof JsonObject) {
+            JsonObject jobject = jElement.getAsJsonObject();
+        return jobject;
+        }else return null;
+    }
+
+    private JsonArray parseJArray(JsonElement jElement){
+
+
+      if (jElement instanceof JsonArray) {
+          JsonArray  jarray = jElement.getAsJsonArray();
+        return jarray;
+        }else return null;
+          }
+
 
 }
 

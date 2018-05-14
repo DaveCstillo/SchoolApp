@@ -70,7 +70,7 @@ public class alumnosListado extends BaseFragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
-       callList("app.php");
+
     }
 
     @Nullable
