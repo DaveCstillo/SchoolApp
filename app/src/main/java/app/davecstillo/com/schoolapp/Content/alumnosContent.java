@@ -1,10 +1,17 @@
 package app.davecstillo.com.schoolapp.Content;
 
+import android.util.Log;
+
+import com.google.gson.JsonElement;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import app.davecstillo.com.schoolapp.BackgroundTask;
+import app.davecstillo.com.schoolapp.httpHandler;
 
 /**
  * Created by DELL on 28/02/2018.
@@ -18,6 +25,13 @@ public class alumnosContent {
     private static final int COUNT = 5;
 
     static {
+        String user = httpHandler.instance.user;
+        String path = "app.php?usser="+user;
+
+        String url;
+
+        url = path.replace(" ","%20");
+        callList(url);
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
             addItem(createAlumno(i));
@@ -32,6 +46,21 @@ public class alumnosContent {
     private static alumno createAlumno(int position) {
         return new alumno(position,generateName(position),generateLastName(),generateGrade(position),generateSec());
     }
+
+
+    public static void callList(String path){
+        new BackgroundTask<JsonElement>(() -> httpHandler.instance.getJson(path), (json, exception)->
+        {
+            if(exception!=null){
+                Log.d("Error",exception.getMessage());
+            }
+            if(json!=null){
+                Log.d("Exito",json.toString());
+            }
+        }).execute();
+    }
+
+
 
     private static String generateName(int position){
         switch (position){

@@ -91,18 +91,6 @@ public class alumnosListado extends BaseFragment {
         return view;
     }
 
-    public void callList(String path){
-        new BackgroundTask<JsonElement>(() -> httpHandler.instance.getJson(path), (json, exception)->
-        {
-            if(exception!=null){
-                Log.d("Error",exception.getMessage());
-            }
-            if(json!=null){
-                Log.d("Exito","lel");
-            }
-        }).execute();
-    }
-
 
     @Override
     public void onDetach() {

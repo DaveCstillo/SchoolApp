@@ -79,12 +79,14 @@ public class Login extends AppCompatActivity {
 
                 Log.d("JSON OBJECT", objct.toString());
                 //Log.d("JSON ARRAY",array.toString());
+                JsonArray objeto = objct.getAsJsonArray("usuario");
+//                JsonObject elemento = objeto.getAsJsonObject();
 
-                Log.d("Object", json.getAsJsonObject().get("usuario").toString());
-
-                Log.d("JSON OBJECT", json.getAsJsonObject().get("usuario").getAsJsonArray().toString());
+                Log.d("Objeto", objeto.toString());
+            //    Log.d("Elemento", elemento.toString());
 
                 for (JsonElement res : json.getAsJsonObject().get("usuario").getAsJsonArray()) {
+                    String user;
 //                    Log.d("RES", res.toString());
 //                    Log.d("USER", res.getAsJsonObject().get("USER").toString());
                     if(res.getAsJsonObject().get("Result")!=null) {
@@ -95,6 +97,9 @@ public class Login extends AppCompatActivity {
                         userEdit.setText("");
                         passEdit.setText("");
                     } else {
+                        user = res.getAsJsonObject().get("Apellidos").toString();
+                        Log.d("USER", user);
+                        httpHandler.instance.user = user;
                         Intent intent = new Intent(getApplicationContext(), menuActivity.class);
                         startActivity(intent);
                     }

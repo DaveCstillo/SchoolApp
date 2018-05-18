@@ -22,6 +22,7 @@ import java.net.URL;
 
 public class httpHandler {
 
+    public String user;
     private String url;
     JsonParser parser;
 
