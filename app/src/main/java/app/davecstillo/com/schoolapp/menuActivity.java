@@ -27,6 +27,7 @@ public class menuActivity extends BaseActivity
         alumnosListado.OnListFragmentInteractionListener{
 
     private int fragmentID;
+    private alumnosContent content = new alumnosContent();
 
 
     @Override
@@ -93,7 +94,7 @@ public class menuActivity extends BaseActivity
           f=new initFragment();
         } else if (id == R.id.notas) {
             fragmentID=R.id.notas;
-            f=new alumnosListado();
+            f=new alumnosListado(content);
         } else if (id == R.id.reportes) {
             fragmentID=R.id.reportes;
             f=new alumnosListado();

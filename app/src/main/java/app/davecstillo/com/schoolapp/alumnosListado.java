@@ -1,5 +1,6 @@
 package app.davecstillo.com.schoolapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -32,9 +33,16 @@ public class alumnosListado extends BaseFragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
 
-
+    private alumnosContent content;
     private int fragmentID;
 
+    public alumnosListado(){
+
+    }
+    @SuppressLint("ValidFragment")
+    public alumnosListado(alumnosContent content){
+        this.content = content;
+    }
 
     public static alumnosListado newInstance(int columnCount) {
         alumnosListado fragment = new alumnosListado();
@@ -86,7 +94,7 @@ public class alumnosListado extends BaseFragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new alumnosRecyclerView(alumnosContent.ITEM, mListener));
+            recyclerView.setAdapter(new alumnosRecyclerView(content.ITEM, mListener));
         }
         return view;
     }

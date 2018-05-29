@@ -2,7 +2,9 @@ package app.davecstillo.com.schoolapp.Content;
 
 import android.util.Log;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,25 +28,27 @@ public class alumnosContent {
 
     static {
         String user = httpHandler.instance.user;
-        String path = "app.php?usser="+user;
+        user = user.replace("\"","");
+        user = user.replace(" ","%20");
+        StringBuilder path = new StringBuilder("app.php?usser=");
+        path.append(user);
 
-        String url;
+        String url = path.toString();
 
-        url = path.replace(" ","%20");
         callList(url);
         // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createAlumno(i));
-        }
+//        for (int i = 1; i <= COUNT; i++) {
+//            addItem(createAlumno(i));
+//        }
     }
 
     private static void addItem(alumno item) {
         ITEM.add(item);
-        ITEM_MAP.put(String.valueOf(item.idEstudiante), item);
+        ITEM_MAP.put(String.valueOf(item.ID), item);
     }
 
-    private static alumno createAlumno(int position) {
-        return new alumno(position,generateName(position),generateLastName(),generateGrade(position),generateSec());
+    private static alumno createAlumno(int ID, int codigoAlumno, String nombres, String apellidos, String grado, String edad) {
+        return new alumno(ID, codigoAlumno, nombres, apellidos, grado, edad);
     }
 
 
@@ -56,62 +60,33 @@ public class alumnosContent {
             }
             if(json!=null){
                 Log.d("Exito",json.toString());
+                for(JsonElement res : json.getAsJsonObject().get("Alumnos").getAsJsonArray()) {
+                    JsonElement obj;
+                    int ID, codigoAlumno;
+                    String nombres, apellidos, grado, edad;
+                    obj = res.getAsJsonObject().get("ID");
+                    ID = obj.getAsInt();
+                    obj = res.getAsJsonObject().get("Codigo_alumno");
+                    codigoAlumno = obj.getAsInt();
+                    obj = res.getAsJsonObject().get("Nombres");
+                    nombres = obj.getAsString();
+                    obj = res.getAsJsonObject().get("Apellidos");
+                    apellidos = obj.getAsString();
+                    obj = res.getAsJsonObject().get("Grado");
+                    grado = obj.getAsString();
+                    obj = res.getAsJsonObject().get("Edad");
+                    edad = obj.getAsString();
+
+                    addItem(createAlumno(ID,codigoAlumno,nombres,apellidos,grado,edad));
+
+                    Log.d("RES", res.toString());
+                    Log.d("obj",obj.toString());
+
+                    JsonObject obj2 = res.getAsJsonObject();
+                    Log.d("obj2",obj2.toString());
+                }
             }
         }).execute();
-    }
-
-
-
-    private static String generateName(int position){
-        switch (position){
-            case 1:
-                return "Carlos";
-            case 2:
-                return "Aida";
-            case 3:
-                return "Juan";
-            case 4:
-                return "Andrea";
-            case 5:
-            default:
-                return "Andy";
-
-        }
-    }
-
-    private static String generateLastName(){
-      return "Escobar";
-    }
-
-    private static String generateGrade(int position){
-        switch (position){
-            case 1:
-                return "PrePrimaria";
-            case 2:
-                return "1ro Primaria";
-            case 3:
-                return "3ro Primaria";
-            case 4:
-                return "2do Secundaria";
-            case 5:
-            default:
-                return "4to Bachiller";
-
-        }
-    }
-
-    private static String generateSec(){
-        Random rand = new Random();
-        int sec = rand.nextInt(4);
-        switch (sec){
-            case 1:
-                default:
-                return "A";
-            case 2:
-                return "B";
-            case 3:
-                return "C";
-        }
     }
 
 
@@ -119,35 +94,37 @@ public class alumnosContent {
     }
 
     public static class alumno{
-        public int idEstudiante;
-        public String nombre, apellido;
+        public int ID, codigoAlumno;
+        public String nombres, apellidos;
         public String grado;
-        public String seccion;
+        public String edad;
 
 
 //        public alumno(int idEstudiante) {
 //            this.idEstudiante = idEstudiante;
 //        }
 
-        public alumno(int idEstudiante, String nombre, String apellido, String grado, String seccion) {
-            this.idEstudiante = idEstudiante;
-            this.nombre = nombre;
-            this.apellido = apellido;
+
+        public alumno(int ID, int codigoAlumno, String nombres, String apellidos, String grado, String edad) {
+            this.ID = ID;
+            this.codigoAlumno = codigoAlumno;
+            this.nombres = nombres;
+            this.apellidos = apellidos;
             this.grado = grado;
-            this.seccion = seccion;
+            this.edad = edad;
         }
 
         public String getDesc(){
-            return nombre+" "+apellido+" Grado: "+grado+"-"+seccion;
+            return nombres+" "+apellidos+" Grado: "+grado;
         }
 
         public String getGrade(){
-            return grado+"-"+seccion;
+            return grado;
         }
 
         @Override
         public String toString() {
-            return apellido+", "+nombre;
+            return codigoAlumno+": "+nombres;
         }
 
     }

@@ -49,21 +49,24 @@ public class alumnosRecyclerView extends RecyclerView.Adapter<alumnosRecyclerVie
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+
+        if(position<mValues.size()) {
             holder.mItem = mValues.get(position);
-            Log.e("MITEM","Item" + holder.mItem);
+            Log.e("MITEM", "Item" + holder.mItem);
             holder.name.setText(mValues.get(position).toString());
             holder.grade.setText(mValues.get(position).getGrade());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(null!= mListener){
+                    if (null != mListener) {
                         mListener.onListFragmentInteraction(holder.mItem);
                     }
                 }
             });
 
-        this.holder = holder;
+            this.holder = holder;
+        }
     }
 
 
