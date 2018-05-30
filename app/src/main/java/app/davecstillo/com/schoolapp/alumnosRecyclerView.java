@@ -50,7 +50,7 @@ public class alumnosRecyclerView extends RecyclerView.Adapter<alumnosRecyclerVie
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
-        if(position<mValues.size()) {
+       // if(position<mValues.size()) {
             holder.mItem = mValues.get(position);
             Log.e("MITEM", "Item" + holder.mItem);
             holder.name.setText(mValues.get(position).toString());
@@ -66,7 +66,7 @@ public class alumnosRecyclerView extends RecyclerView.Adapter<alumnosRecyclerVie
             });
 
             this.holder = holder;
-        }
+      //  }
     }
 
 
@@ -77,7 +77,7 @@ public class alumnosRecyclerView extends RecyclerView.Adapter<alumnosRecyclerVie
 
     @Override
     public int getItemCount() {
-        return 5;
+        return mValues.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

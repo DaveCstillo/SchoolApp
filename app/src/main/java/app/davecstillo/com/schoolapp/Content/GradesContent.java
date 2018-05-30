@@ -83,6 +83,8 @@ public class GradesContent extends BaseFragment {
     public static class GradeItem{
         public final int id;
         public final String clase;
+        public int nota1, nota2,nota3,nota4;
+        public int parcial1, parcial2, zona, exfinl;
         public final String grade;
 
         public GradeItem(int id, String day, String details){

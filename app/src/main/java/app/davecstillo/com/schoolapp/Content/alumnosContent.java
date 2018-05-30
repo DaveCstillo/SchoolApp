@@ -24,7 +24,7 @@ public class alumnosContent {
     public static List<alumno> ITEM = new ArrayList<alumno>();
 
     public static final Map<String, alumno> ITEM_MAP = new HashMap<String, alumno>();
-    private static final int COUNT = 5;
+
 
     static {
         String user = httpHandler.instance.user;
@@ -72,11 +72,11 @@ public class alumnosContent {
                     nombres = obj.getAsString();
                     obj = res.getAsJsonObject().get("Apellidos");
                     apellidos = obj.getAsString();
-                    obj = res.getAsJsonObject().get("Grado");
-                    grado = obj.getAsString();
+                   // obj = res.getAsJsonObject().get("Grado");
+                    grado = retGrade(res.getAsJsonObject().get("Grado"));
                     obj = res.getAsJsonObject().get("Edad");
                     edad = obj.getAsString();
-
+                    Log.i("Grado",grado);
                     addItem(createAlumno(ID,codigoAlumno,nombres,apellidos,grado,edad));
 
                     Log.d("RES", res.toString());
@@ -89,6 +89,28 @@ public class alumnosContent {
         }).execute();
     }
 
+    static public String retGrade(JsonElement element){
+
+        Log.d("Grade Element", element.toString());
+        String dato = element.toString();
+        dato = dato.replace("\"","");
+        switch (dato){
+
+            case "prepa": return "Prepa";
+            case "unoprimaria": return "1ro. P";
+            case "dosprimaria": return "2do. P";
+            case "tresprimaria": return "3ro. P";
+            case "cuatroprimaria": return "4to. P";
+            case "cincoprimaria": return "5to. P";
+            case "seisprimaria": return "6to. P";
+            case "unobasico": return "1ro. B";
+            case "dosbasico": return "2do. B";
+            case "tresbasico": return "3ro. B";
+            default: return dato;
+
+        }
+
+    }
 
     public alumnosContent() {
     }
