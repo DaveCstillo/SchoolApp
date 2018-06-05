@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -39,8 +41,15 @@ public class gradesRecyclerViewAdapter extends RecyclerView.Adapter<gradesRecycl
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Log.d("mValues",String.valueOf(mValues.get(position)));
         holder.mItem = mValues.get(position);
-        holder.mClaseNombre.setText(mValues.get(position).clase);
-        holder.mClasePuntos.setText(mValues.get(position).grade);
+        holder.mClaseBtn.setText(mValues.get(position).clase);
+        holder.mNota1Pts.setText(Integer.toString(mValues.get(position).nota1));
+        holder.mNota2Pts.setText(Integer.toString(mValues.get(position).nota2));
+        holder.mNota3Pts.setText(Integer.toString(mValues.get(position).nota3));
+        holder.mNota4Pts.setText(Integer.toString(mValues.get(position).nota4));
+        holder.mParcial1Pts.setText(Integer.toString(mValues.get(position).parcial1));
+        holder.mParcial2Pts.setText(Integer.toString(mValues.get(position).parcial2));
+        holder.mZonaPts.setText(Integer.toString(mValues.get(position).zona));
+        holder.mFinalPts.setText(Integer.toString(mValues.get(position).exfinl));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,20 +70,46 @@ public class gradesRecyclerViewAdapter extends RecyclerView.Adapter<gradesRecycl
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mClaseNombre;
-        public final TextView mClasePuntos;
+        public final Button mClaseBtn;
+        public final LinearLayout mGradesLayout;
+        public final TextView mNota1Pts, mNota2Pts, mNota3Pts, mNota4Pts, mParcial1Pts, mParcial2Pts, mZonaPts, mFinalPts;
         public GradeItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mClaseNombre = (TextView) view.findViewById(R.id.className);
-            mClasePuntos = (TextView) view.findViewById(R.id.pointsTxt);
+            mClaseBtn = (Button) view.findViewById(R.id.classBtn);
+            mGradesLayout = (LinearLayout) view.findViewById(R.id.classLayout);
+            mNota1Pts = (TextView) view.findViewById(R.id.nota1Pts);
+            mNota2Pts = (TextView) view.findViewById(R.id.nota2Pts);
+            mNota3Pts = (TextView) view.findViewById(R.id.nota3Pts);
+            mNota4Pts = (TextView) view.findViewById(R.id.nota4Pts);
+            mParcial1Pts= (TextView) view.findViewById(R.id.parcial1Pts);
+            mParcial2Pts= (TextView) view.findViewById(R.id.parcial2Pts);
+            mZonaPts= (TextView) view.findViewById(R.id.zonaPts);
+            mFinalPts= (TextView) view.findViewById(R.id.finalPts);
+
+
+
+            mClaseBtn.setOnClickListener((view1 -> {
+
+                mGradesLayout.setVisibility(toggleVisibility());
+
+            }));
+        }
+
+        public int toggleVisibility(){
+            if(mGradesLayout.getVisibility()==View.GONE)
+                return View.VISIBLE;
+            else
+                return View.GONE;
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mClaseNombre.getText() + "'";
+            return super.toString() + " '" + mClaseBtn.getText() + "'";
         }
+
+
     }
 }
