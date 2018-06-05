@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Random;
 
 import app.davecstillo.com.schoolapp.BaseFragment;
+import app.davecstillo.com.schoolapp.httpHandler;
 
 /**
  * Created by David on 2/1/2018.
@@ -28,55 +29,26 @@ public class GradesContent extends BaseFragment {
 
 
     static {
-        //To add some items
-        for(int i=1;i<=COUNT;i++){
-            addItem(createGradeItem(i));
-        }
+//
+//        //To add some items
+//        for(int i=1;i<=COUNT;i++){
+//            addItem(createGradeItem(i));
+//        }
     }
 
-    private static void addItem(GradeItem item){
+    public void addItem(GradeItem item){
         ITEMS.add(item);
         ITEM_MAP.put(String.valueOf(item.id), item);
     }
 
-    private static GradeItem createGradeItem(int position){
-        return new GradeItem(position,selectClass(position),setGrade());
+    public GradeItem createGradeItem(int position, String clase, int nota1,int nota2, int nota3, int nota4, int parcial1, int parcial2, int zona, int exfinal, String grade){
+        return new GradeItem(position,clase,nota1,nota2,nota3,nota4,parcial1,parcial2,zona,exfinal,grade);
     }
 
-    private static String selectClass(int position){
-        String clase = "Recreo";
-        switch (position){
-            case 1: clase = "Matematica"; break;
-            case 2: clase = "Historia"; break;
-            case 3: clase = "Lenguaje"; break;
-            case 4: clase = "Ingles"; break;
-            case 5: clase = "Ciencia"; break;
-        }
-
-        return clase;
-    }
-
-    private static String setGrade() {
-        String nota = "0";
-        Random rand = new Random();
-        int note = rand.nextInt(100);
-        nota = String.valueOf(note);
-        return nota;
-    }
-
-    private static String makeDetails(int position){
-        StringBuilder builder = new StringBuilder();
-        builder.append("Details: ").append(position);
-        for(int i=0;i<position;i++){
-            builder.append("\nMore details info here.");
-        }
-        return builder.toString();
-
-    }
 
 
     /*
-     *WeekItem Class
+     *GradeItem Class
      *
      */
 
@@ -87,10 +59,18 @@ public class GradesContent extends BaseFragment {
         public int parcial1, parcial2, zona, exfinl;
         public final String grade;
 
-        public GradeItem(int id, String day, String details){
+        public GradeItem(int id, String clase, int nota1, int nota2, int nota3, int nota4, int parcial1, int parcial2, int zona, int exfinl, String grade) {
             this.id = id;
-            this.clase = day;
-            this.grade = details;
+            this.clase = clase;
+            this.nota1 = nota1;
+            this.nota2 = nota2;
+            this.nota3 = nota3;
+            this.nota4 = nota4;
+            this.parcial1 = parcial1;
+            this.parcial2 = parcial2;
+            this.zona = zona;
+            this.exfinl = exfinl;
+            this.grade = grade;
         }
 
         @Override
