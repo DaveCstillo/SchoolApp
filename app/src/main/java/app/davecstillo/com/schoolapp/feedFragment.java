@@ -1,17 +1,22 @@
 package app.davecstillo.com.schoolapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import app.davecstillo.com.schoolapp.dummy.DummyContent;
-import app.davecstillo.com.schoolapp.dummy.DummyContent.DummyItem;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+
+import app.davecstillo.com.schoolapp.Content.feedContent;
+import app.davecstillo.com.schoolapp.Content.feedContent.feedItem;
 
 /**
  * A fragment representing a list of Items.
@@ -26,6 +31,13 @@ public class feedFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+
+    public feedItem feedItem;
+    public feedContent content = new feedContent();
+
+    String ID, Title, Desc, imgName;
+    Bitmap Img;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -67,7 +79,8 @@ public class feedFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyfeedRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            callList("downloader.php", recyclerView);
+
         }
         return view;
     }
@@ -82,6 +95,81 @@ public class feedFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
         }
+    }
+
+
+    void callList(String path, RecyclerView recyclerView){
+
+        new BackgroundTask<JsonElement>(()-> httpHandler.instance.getJson(path), (json,exception)-> {
+
+        if(exception!=null){
+            Log.e("Error",exception.getMessage());
+        }
+        if(json!=null){
+            JsonArray feed = json.getAsJsonObject().get("feed").getAsJsonArray();
+
+            for(JsonElement res : feed.getAsJsonArray()){
+                String ID, Titulo, Descripcion, imgName;
+
+
+
+                ID = res.getAsJsonObject().get("ID").getAsString();
+                Titulo = res.getAsJsonObject().get("Titulo").getAsString();
+                Descripcion = res.getAsJsonObject().get("Descripcion").getAsString();
+                imgName = res.getAsJsonObject().get("Imagen").getAsString();
+
+                setVars(ID, Titulo, Descripcion, imgName);
+
+
+                onInfoFetched(recyclerView);
+            }
+
+        }
+
+
+        }).execute();
+
+
+
+
+    }
+
+    void setImagen2(String imgName){
+
+        new BackgroundTask<Bitmap>(()-> httpHandler.instance.getImage("uploads/"+imgName), (image,exc)->{
+            if(exc!=null){
+                Log.e("Error"," al traer la imagen "+ exc.getMessage());
+            }
+            if(image!=null) {
+                Log.d("Imagen","recogida");
+                Bitmap map = image;
+                loadImage(map);
+            }
+        }).execute();
+
+    }
+
+
+    void setImagen(String imgurl){
+
+
+    }
+
+    void loadImage(Bitmap bitmap){
+            this.Img = bitmap;
+    }
+
+    void setVars(String ID, String Titulo,String Descripcion, String imgName){
+        this.ID = ID;
+        this.Title = Titulo;
+        this.Desc = Descripcion;
+        this.imgName = imgName;
+    }
+
+    void onInfoFetched(RecyclerView recyclerView){
+        content.addItem(content.createFeedItem(this.ID,this.Title,this.Desc, this.imgName));
+
+        recyclerView.setAdapter(new MyfeedRecyclerViewAdapter(feedContent.ITEMS, mListener));
     }
 
     @Override
@@ -102,6 +190,6 @@ public class feedFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(feedItem item);
     }
 }

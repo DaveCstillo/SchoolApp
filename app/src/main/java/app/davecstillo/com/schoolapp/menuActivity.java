@@ -15,6 +15,7 @@ import android.widget.Button;
 import app.davecstillo.com.schoolapp.Content.GradesContent;
 import app.davecstillo.com.schoolapp.Content.activitiesContent;
 import app.davecstillo.com.schoolapp.Content.alumnosContent;
+import app.davecstillo.com.schoolapp.Content.feedContent;
 import app.davecstillo.com.schoolapp.dummy.DummyContent;
 
 public class menuActivity extends BaseActivity
@@ -120,11 +121,6 @@ public class menuActivity extends BaseActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
-    }
-
-    @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
@@ -136,9 +132,6 @@ public class menuActivity extends BaseActivity
 
     @Override
     public void onListFragmentInteraction(GradesContent.GradeItem item) {
-
-
-
 
     }
 
@@ -167,6 +160,11 @@ public class menuActivity extends BaseActivity
         }
 
         changeFragment(f);
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(feedContent.feedItem item) {
 
     }
 }

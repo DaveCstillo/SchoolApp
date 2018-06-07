@@ -31,7 +31,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         httpHandler.instance = new httpHandler("https://dacastest.000webhostapp.com/");
-
+        Imagenes.init();
 
         codeEdit = (EditText) findViewById(R.id.codeEdit);
         userEdit = (EditText) findViewById(R.id.userEdit);

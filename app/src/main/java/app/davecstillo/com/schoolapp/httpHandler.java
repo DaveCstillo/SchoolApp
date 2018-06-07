@@ -1,6 +1,8 @@
 package app.davecstillo.com.schoolapp;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.google.gson.JsonElement;
@@ -55,4 +57,22 @@ public class httpHandler {
         Log.i("Json2", String.valueOf(parser.parse(chaine.toString())));
         return parser.parse(chaine.toString());
     }
+
+    public Bitmap getImage(String name) throws Exception
+    {
+        return getImage(name, true);
+    }
+
+    public Bitmap getImage(String path, boolean useBaseUrl) throws Exception
+    {
+        String address = useBaseUrl ? this.url + path : path;
+        URL url = new URL(address);
+        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+        connection.setDoInput(true);
+        connection.connect();
+        InputStream input = connection.getInputStream();
+        Bitmap myBitmap = BitmapFactory.decodeStream(input);
+        return myBitmap;
+    }
+
 }

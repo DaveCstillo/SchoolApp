@@ -14,7 +14,7 @@ import app.davecstillo.com.schoolapp.Content.activitiesContent;
 import app.davecstillo.com.schoolapp.dummy.DummyContent;
 
 
-public class MainActivity extends AppCompatActivity implements feedFragment.OnListFragmentInteractionListener, activities.OnFragmentInteractionListener, schedule_frame.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements activities.OnFragmentInteractionListener, schedule_frame.OnFragmentInteractionListener {
 
 
     View schedule;
@@ -58,10 +58,6 @@ public class MainActivity extends AppCompatActivity implements feedFragment.OnLi
 
     }
 
-    @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
-    }
 
 
     @Override

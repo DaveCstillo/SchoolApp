@@ -94,7 +94,7 @@ public class gradesFragment extends BaseFragment {
                 Log.e("Error",exception.getMessage());
             }
             if(json!=null) {
-
+                    //TODO: acordarese que el "3" es por la cantidad de materias que he ingresado
                 for (int i = 1; i < 3; i++) {
                     if(getClase(i)==""){
                         //Error!!!TODO: Agregar mensaje de error
@@ -135,7 +135,7 @@ public class gradesFragment extends BaseFragment {
     }
 
     public void onInfoFetched(GradesContent cont, RecyclerView recyclerView){
-        recyclerView.setAdapter(new gradesRecyclerViewAdapter(GradesContent.ITEMS, mListener));
+        recyclerView.setAdapter(new gradesRecyclerViewAdapter(cont.ITEMS, mListener));
     }
 
     public String getClase(int x){
