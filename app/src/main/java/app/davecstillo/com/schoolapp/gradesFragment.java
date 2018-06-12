@@ -95,7 +95,7 @@ public class gradesFragment extends BaseFragment {
             }
             if(json!=null) {
                     //TODO: acordarese que el "3" es por la cantidad de materias que he ingresado
-                for (int i = 1; i < 3; i++) {
+                for (int i = 1; i < 2; i++) {
                     if(getClase(i)==""){
                         //Error!!!TODO: Agregar mensaje de error
                     }else {

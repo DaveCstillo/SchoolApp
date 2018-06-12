@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity {
                         userEdit.setText("");
                         passEdit.setText("");
                     } else {
-                        user = res.getAsJsonObject().get("Apellidos").toString();
+                        user = res.getAsJsonObject().get("USER").toString();
                         Log.d("USER", user);
                         httpHandler.instance.user = user;
                         Intent intent = new Intent(getApplicationContext(), menuActivity.class);
