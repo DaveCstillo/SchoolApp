@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -94,10 +95,16 @@ public class gradesFragment extends BaseFragment {
                 Log.e("Error",exception.getMessage());
             }
             if(json!=null) {
+
+                if(json.getAsJsonObject().get("Notas_Alumno")!=null){
+                    Toast toast = Toast.makeText(getContext(), "No hay notas disponibles", Toast.LENGTH_LONG);
+                    toast.show();
+                }else{
                     //TODO: acordarese que el "3" es por la cantidad de materias que he ingresado
-                for (int i = 1; i < 2; i++) {
+                for (int i = 1; i < 3; i++) {
                     if(getClase(i)==""){
                         //Error!!!TODO: Agregar mensaje de error
+
                     }else {
                         JsonArray clase = json.getAsJsonObject().get(getClase(i)).getAsJsonArray();
                         Log.d("Clase", getClase(i));
@@ -128,7 +135,7 @@ public class gradesFragment extends BaseFragment {
                     }
                 }
                 onInfoFetched(content, recyclerView);
-            }
+            }}
 
         }).execute();
 
