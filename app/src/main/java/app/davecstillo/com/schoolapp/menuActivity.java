@@ -17,6 +17,7 @@ import app.davecstillo.com.schoolapp.Content.activitiesContent;
 import app.davecstillo.com.schoolapp.Content.alumnosContent;
 import app.davecstillo.com.schoolapp.Content.feedContent;
 import app.davecstillo.com.schoolapp.Content.reportContent;
+import app.davecstillo.com.schoolapp.Content.tareasContent;
 import app.davecstillo.com.schoolapp.dummy.DummyContent;
 
 public class menuActivity extends BaseActivity
@@ -27,7 +28,8 @@ public class menuActivity extends BaseActivity
         initFragment.OnFragmentInteractionListener,
         gradesFragment.OnListFragmentInteractionListener,
         alumnosListado.OnListFragmentInteractionListener,
-        reportfragment.OnListFragmentInteractionListener{
+        reportfragment.OnListFragmentInteractionListener,
+        tareasFragment.OnListFragmentInteractionListener{
 
     private int fragmentID;
     private alumnosContent content = new alumnosContent();
@@ -156,7 +158,9 @@ public class menuActivity extends BaseActivity
                 f = new initFragment();
                 break;
             case R.id.tareas:
-                f = new initFragment();
+                tareasFragment tareaF = new tareasFragment();
+                tareaF.setAlumno(item);
+                f=tareaF;
                 break;
             default:
                 f = new initFragment();
@@ -174,6 +178,11 @@ public class menuActivity extends BaseActivity
 
     @Override
     public void onListFragmentInteraction(reportContent.reporte item) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(tareasContent.tarea item) {
 
     }
 }

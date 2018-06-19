@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/claseTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:background="@color/colorAccent"
+        android:text="Matematicas"
+        android:textAppearance="?attr/textAppearanceListItem" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Fecha de Entrega:"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+        <TextView
+            android:id="@+id/fechaEntrega"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2018-06-20"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tareaTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:text="Lorem ipsum"
+        android:textAppearance="?attr/textAppearanceListItem" />
+
+
+</LinearLayout>
