@@ -74,6 +74,7 @@ public class feedFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
+
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -103,7 +104,7 @@ public class feedFragment extends Fragment {
         new BackgroundTask<JsonElement>(()-> httpHandler.instance.getJson(path), (json,exception)-> {
 
         if(exception!=null){
-            Log.e("Error",exception.getMessage());
+            //Log.e("Error",exception.getMessage());
         }
         if(json!=null){
             JsonArray feed = json.getAsJsonObject().get("feed").getAsJsonArray();
@@ -146,12 +147,6 @@ public class feedFragment extends Fragment {
                 loadImage(map);
             }
         }).execute();
-
-    }
-
-
-    void setImagen(String imgurl){
-
 
     }
 

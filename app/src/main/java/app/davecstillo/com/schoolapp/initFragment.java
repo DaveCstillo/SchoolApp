@@ -27,11 +27,10 @@ public class initFragment extends BaseFragment {
     private OnFragmentInteractionListener mListener;
 
 
-    View schedule;
-    TabHost tabHost;
-    LinearLayout tab1, tab2;
 
-    CalendarView cal;
+    TabHost tabHost;
+    LinearLayout tab1, tab2, tab3;
+
 
 
     public initFragment() {
@@ -77,9 +76,9 @@ public class initFragment extends BaseFragment {
 
 
 
-        cal = (CalendarView) view.findViewById(R.id.calendarView);
         tab1 = (LinearLayout) view.findViewById(R.id.tab1);
         tab2 = (LinearLayout) view.findViewById(R.id.tab2);
+        tab3 = (LinearLayout) view.findViewById(R.id.tab3);
 
         tabHost = (TabHost) view.findViewById(R.id.tabHost);
         tabHost.setup();
@@ -89,13 +88,15 @@ public class initFragment extends BaseFragment {
         spec.setIndicator("FEED");
         tabHost.addTab(spec);
 
-        spec = tabHost.newTabSpec("SCHEDULE");
+        spec = tabHost.newTabSpec("AVISOS");
         spec.setContent(R.id.tab2);
-        spec.setIndicator("SCHEDULE");
+        spec.setIndicator("AVISOS");
         tabHost.addTab(spec);
 
-        schedule = view.findViewById(R.id.schedule_fragment);
-        schedule_frame.newInstance();
+        spec = tabHost.newTabSpec("MENU");
+        spec.setContent(R.id.tab3);
+        spec.setIndicator("MENU");
+        tabHost.addTab(spec);
 
 
 
