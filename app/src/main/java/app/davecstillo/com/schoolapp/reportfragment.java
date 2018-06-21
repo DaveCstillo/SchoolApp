@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.gson.JsonElement;
@@ -39,6 +40,7 @@ public class reportfragment extends BaseFragment {
     private alumnosContent.alumno alumno;
     private reportContent content = new reportContent();
 
+    private ProgressBar progressBar;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -70,6 +72,9 @@ public class reportfragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_report_list, container, false);
 
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setIndeterminate(true);
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -126,6 +131,7 @@ public class reportfragment extends BaseFragment {
 
 
     public void onInfoFetched(reportContent contenido, RecyclerView recyclerView){
+        progressBar.setVisibility(View.GONE);
         recyclerView.setAdapter(new reportItemRecyclerViewAdapter(contenido.ITEM, mListener));
     }
 

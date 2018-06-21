@@ -10,4 +10,7 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".reportfragment"
-    tools:listitem="@layout/fragment_report" />
+    tools:listitem="@layout/fragment_report" >
+
+
+</android.support.v7.widget.RecyclerView>

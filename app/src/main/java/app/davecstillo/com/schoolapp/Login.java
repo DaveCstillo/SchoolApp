@@ -2,6 +2,7 @@ package app.davecstillo.com.schoolapp;
 
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.gson.JsonArray;
@@ -24,9 +26,12 @@ public class Login extends AppCompatActivity {
 
     private EditText codeEdit, userEdit, passEdit;
     Button button;
+    ProgressDialog progressDialog;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -38,13 +43,21 @@ public class Login extends AppCompatActivity {
         passEdit = (EditText) findViewById(R.id.passEdit);
 
         button = (Button) findViewById(R.id.loginBtn);
+        progressDialog  = new ProgressDialog(this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Verificando Datos.");
+        progressDialog.hide();
+        button.setOnClickListener(view ->{
+               progressDialog.show();
+            login(progressDialog);
 
-        button.setOnClickListener(view ->{ login();});
+        });
 
 
     }
 
-    private void login() {
+    private void login(ProgressDialog progressDialog) {
 
         StringBuilder path = new StringBuilder("login.php?user=");
         path.append(userEdit.getText());
@@ -96,12 +109,14 @@ public class Login extends AppCompatActivity {
                         codeEdit.setText("");
                         userEdit.setText("");
                         passEdit.setText("");
+                        progressDialog.hide();
                     } else {
                         user = res.getAsJsonObject().get("USER").toString();
                         Log.d("USER", user);
                         httpHandler.instance.user = user;
                         Intent intent = new Intent(getApplicationContext(), menuActivity.class);
                         startActivity(intent);
+                       progressDialog.hide();
                     }
                 }
             }
