@@ -22,10 +22,7 @@
                 android:id="@+id/reportes"
                 android:icon="@drawable/ic_assignment"
                 android:title="Reportes" />
-            <item
-                android:id="@+id/Horarios"
-                android:icon="@drawable/ic_date_range"
-                android:title="Horarios" />
+
             <item
                 android:id="@+id/tareas"
                 android:icon="@drawable/ic_import_contacts"

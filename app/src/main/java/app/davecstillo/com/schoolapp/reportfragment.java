@@ -1,5 +1,6 @@
 package app.davecstillo.com.schoolapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -40,7 +41,7 @@ public class reportfragment extends BaseFragment {
     private alumnosContent.alumno alumno;
     private reportContent content = new reportContent();
 
-    private ProgressBar progressBar;
+    private ProgressDialog progressBar;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -72,9 +73,11 @@ public class reportfragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_report_list, container, false);
 
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar = new ProgressDialog(getContext());
+        progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressBar.setIndeterminate(true);
+        progressBar.setMessage("Cargando....");
+        progressBar.show();
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -103,6 +106,7 @@ public class reportfragment extends BaseFragment {
                 if(json.getAsJsonObject().get("Reporte_Alumno")!=null){
                     Toast toast = Toast.makeText(getContext(), "No hay notas disponibles", Toast.LENGTH_LONG);
                     toast.show();
+                    progressBar.hide();
                 }else {
                     for (JsonElement res : json.getAsJsonObject().get("Reporte").getAsJsonArray()) {
                         int ID;
@@ -131,7 +135,7 @@ public class reportfragment extends BaseFragment {
 
 
     public void onInfoFetched(reportContent contenido, RecyclerView recyclerView){
-        progressBar.setVisibility(View.GONE);
+        progressBar.hide();
         recyclerView.setAdapter(new reportItemRecyclerViewAdapter(contenido.ITEM, mListener));
     }
 

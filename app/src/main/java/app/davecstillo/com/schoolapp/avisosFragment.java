@@ -1,5 +1,6 @@
 package app.davecstillo.com.schoolapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.gson.JsonElement;
 
@@ -35,6 +37,7 @@ public class avisosFragment extends BaseFragment {
 
 
     private avisosContent content = new avisosContent();
+    ProgressDialog progressBar;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -65,6 +68,13 @@ public class avisosFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_avisos_list, container, false);
+
+        progressBar = new ProgressDialog(getContext());
+        progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressBar.setIndeterminate(true);
+        progressBar.setMessage("Cargando....");
+        progressBar.show();
+
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -110,6 +120,9 @@ public class avisosFragment extends BaseFragment {
                 }
                 onInfoFetched(content, recyclerView);
 
+            }else{
+                progressBar.hide();
+                Toast.makeText(getContext(),"No hay Avisos Disponibles",Toast.LENGTH_LONG).show();
             }
 
 
@@ -121,7 +134,7 @@ public class avisosFragment extends BaseFragment {
 
 
     public void onInfoFetched(avisosContent content, RecyclerView recyclerView){
-
+        progressBar.hide();
         recyclerView.setAdapter(new avisosRecyclerViewAdapter(content.ITEM, mListener));
     }
 

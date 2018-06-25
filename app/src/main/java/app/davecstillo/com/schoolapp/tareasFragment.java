@@ -1,5 +1,6 @@
 package app.davecstillo.com.schoolapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.gson.JsonElement;
 
@@ -33,6 +35,7 @@ public class tareasFragment extends BaseFragment {
 
     private alumnosContent.alumno alumno;
     tareasContent content = new tareasContent();
+    ProgressDialog progressBar;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -63,6 +66,12 @@ public class tareasFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tareas_list, container, false);
+
+        progressBar = new ProgressDialog(getContext());
+        progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressBar.setIndeterminate(true);
+        progressBar.setMessage("Cargando....");
+        progressBar.show();
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -105,6 +114,9 @@ public class tareasFragment extends BaseFragment {
                     content.addItem(content.createTarea(ID, codMaestro,Materia,Tarea,fechaEm,fechaEn));
                 }
                 onInfoFetched(content, recyclerView);
+            }else{
+                progressBar.hide();
+                Toast.makeText(getContext(),"No hay tareas disponibles",Toast.LENGTH_LONG).show();
             }
 
 
@@ -118,6 +130,7 @@ public class tareasFragment extends BaseFragment {
 
 
     public void onInfoFetched(tareasContent content, RecyclerView recyclerView){
+        progressBar.hide();
         recyclerView.setAdapter(new tareasRecyclerViewAdapter(content.ITEM, mListener));
     }
 

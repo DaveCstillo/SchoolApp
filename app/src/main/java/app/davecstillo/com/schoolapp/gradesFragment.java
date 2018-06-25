@@ -1,5 +1,6 @@
 package app.davecstillo.com.schoolapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -36,7 +37,7 @@ public class gradesFragment extends BaseFragment {
     public alumnosContent.alumno alumno;
     public  GradesContent content = new GradesContent();
 
-
+    ProgressDialog progressBar;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -69,6 +70,13 @@ public class gradesFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_grades_list, container, false);
 
+        progressBar = new ProgressDialog(getContext());
+        progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressBar.setIndeterminate(true);
+        progressBar.setMessage("Cargando....");
+        progressBar.show();
+
+
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -97,6 +105,7 @@ public class gradesFragment extends BaseFragment {
             if(json!=null) {
 
                 if(json.getAsJsonObject().get("Notas_Alumno")!=null){
+                    progressBar.hide();
                     Toast toast = Toast.makeText(getContext(), "No hay notas disponibles", Toast.LENGTH_LONG);
                     toast.show();
                 }else{
@@ -142,6 +151,7 @@ public class gradesFragment extends BaseFragment {
     }
 
     public void onInfoFetched(GradesContent cont, RecyclerView recyclerView){
+        progressBar.hide();
         recyclerView.setAdapter(new gradesRecyclerViewAdapter(cont.ITEMS, mListener));
     }
 

@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
     android:orientation="vertical"
-    android:scrollbars="vertical">
+    tools:context=".Login">
 
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:adjustViewBounds="true"
         android:contentDescription="LogoWaldorf"
         android:cropToPadding="false"
@@ -22,62 +21,74 @@
         android:scaleType="fitStart"
         app:srcCompat="@drawable/logowaldorf_large_transparent" />
 
-    <Space
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="0"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
 
-    <TextView
-        android:id="@+id/codeText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Codigo" />
+        <TextView
+            android:id="@+id/codeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Codigo" />
 
-    <EditText
-        android:id="@+id/codeEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="Codigo"
-        android:inputType="textPersonName"
-        android:text="" />
+        <EditText
+            android:id="@+id/codeEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Codigo"
+            android:inputType="textPersonName"
+            android:text="" />
 
-    <TextView
-        android:id="@+id/userText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Usuario" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/userEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="Usuario"
-        android:inputType="textPersonName"
-        android:text="" />
-    <TextView
-        android:id="@+id/passText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Contraseña" />
+        <TextView
+            android:id="@+id/userText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Usuario" />
 
-    <EditText
-        android:id="@+id/passEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="password"
-        android:inputType="textPassword"
-        android:text="" />
+        <EditText
+            android:id="@+id/userEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Usuario"
+            android:inputType="textPersonName"
+            android:text="" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/passText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contraseña" />
+
+        <EditText
+            android:id="@+id/passEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:text="" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:text="Ingresar" />
 </LinearLayout>

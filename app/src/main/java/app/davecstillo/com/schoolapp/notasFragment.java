@@ -1,5 +1,6 @@
 package app.davecstillo.com.schoolapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class notasFragment extends BaseFragment {
     // TODO: Rename and change types of parameters
 
     private OnFragmentInteractionListener mListener;
+
 
     public notasFragment() {
         // Required empty public constructor
@@ -57,6 +59,7 @@ public class notasFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_notas, container, false);
     }

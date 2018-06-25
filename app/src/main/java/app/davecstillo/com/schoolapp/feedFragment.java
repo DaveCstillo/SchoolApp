@@ -1,5 +1,6 @@
 package app.davecstillo.com.schoolapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -39,6 +40,8 @@ public class feedFragment extends Fragment {
     String ID, Title, Desc, imgName;
     Bitmap Img;
 
+    ProgressDialog progressBar;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -69,6 +72,13 @@ public class feedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feed_list, container, false);
+
+        progressBar = new ProgressDialog(getContext());
+        progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressBar.setIndeterminate(true);
+        progressBar.setMessage("Cargando....");
+        progressBar.show();
+
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -125,6 +135,8 @@ public class feedFragment extends Fragment {
                 onInfoFetched(recyclerView);
             }
 
+        }else{
+            progressBar.hide();
         }
 
 
@@ -162,6 +174,7 @@ public class feedFragment extends Fragment {
     }
 
     void onInfoFetched(RecyclerView recyclerView){
+        progressBar.hide();
         content.addItem(content.createFeedItem(this.ID,this.Title,this.Desc, this.imgName));
 
         recyclerView.setAdapter(new MyfeedRecyclerViewAdapter(feedContent.ITEMS, mListener));

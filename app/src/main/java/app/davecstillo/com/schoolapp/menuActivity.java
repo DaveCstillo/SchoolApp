@@ -105,9 +105,7 @@ public class menuActivity extends BaseActivity
         } else if (id == R.id.reportes) {
             fragmentID=R.id.reportes;
             f=new alumnosListado();
-        } else if (id == R.id.Horarios) {
-            fragmentID=R.id.Horarios;
-            f=new alumnosListado();
+
         } else if (id == R.id.tareas) {
             fragmentID=R.id.tareas;
             f=new alumnosListado();
@@ -156,9 +154,7 @@ public class menuActivity extends BaseActivity
                 reportF.setAlumno(item);
                 f = reportF;
                 break;
-            case R.id.Horarios:
-                f = new initFragment();
-                break;
+
             case R.id.tareas:
                 tareasFragment tareaF = new tareasFragment();
                 tareaF.setAlumno(item);
