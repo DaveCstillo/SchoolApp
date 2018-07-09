@@ -3,6 +3,7 @@ package app.davecstillo.com.schoolapp;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -36,6 +37,8 @@ public class cafeteria extends BaseFragment {
     private float newRot = 0f;
 
 
+    private FloatingActionButton cafeteriaMenuFAB;
+
     public cafeteria() {
         // Required empty public constructor
     }
@@ -52,6 +55,37 @@ public class cafeteria extends BaseFragment {
 //        view.setMinimumHeight(screenHeight);
 //        view.setMinimumWidth(screenWidth);
 
+        cafeteriaMenuFAB = (FloatingActionButton) view.findViewById(R.id.cafeteriaFAB);
+        cafeteriaMenuFAB.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Log.e("FAB","OnTouchListener 1");
+
+                RelativeLayout.LayoutParams parametros = (RelativeLayout.LayoutParams) cartel.getLayoutParams();
+
+
+                Log.i("Imagen LMargin",String.valueOf(parametros.leftMargin));
+                Log.i("Imagen RMargin", String.valueOf(parametros.rightMargin));
+                Log.i("Imagen TMargin",String.valueOf(parametros.topMargin));
+                Log.i("Imagen BMargin",String.valueOf(parametros.bottomMargin));
+
+
+                cartel.setLayoutParams(setMenuPosition());
+                cartel.setScaleY(1f);
+                cartel.setScaleX(1f);
+
+                Log.e("FAB","OnTouchListener 2");
+
+
+                Log.i("Imagen LMargin",String.valueOf(parametros.leftMargin));
+                Log.i("Imagen RMargin", String.valueOf(parametros.rightMargin));
+                Log.i("Imagen TMargin",String.valueOf(parametros.topMargin));
+                Log.i("Imagen BMargin",String.valueOf(parametros.bottomMargin));
+
+
+                return true;
+            }
+        });
 
         callList("getMenu.php");
 
@@ -88,27 +122,8 @@ public class cafeteria extends BaseFragment {
             }
             if(b!=null) {
 
-
-                int screenWidth = this.getResources().getDisplayMetrics().widthPixels;
-                int screenHeight = this.getResources().getDisplayMetrics().heightPixels;
-
-
-                Log.d("Widths: ", "screenWidth: " + String.valueOf(screenWidth));
-                Log.d("Heights: ", "screenHeight: " + String.valueOf(screenHeight));
-
-
-
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, 250);
-                layoutParams.leftMargin = 0;
-                layoutParams.topMargin = 0;
-                layoutParams.bottomMargin = 0;
-                layoutParams.rightMargin = 0;
-                layoutParams.width= screenWidth;
-                layoutParams.height = screenHeight;
-
-
                 cartel.setImageBitmap(b);
-                cartel.setLayoutParams(layoutParams);
+                cartel.setLayoutParams(setMenuPosition());
                 cartel.setOnTouchListener(touchListener());
 
             }
@@ -119,6 +134,29 @@ public class cafeteria extends BaseFragment {
 
 
     }
+
+
+    public RelativeLayout.LayoutParams setMenuPosition(){
+
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(250, 250);
+        layoutParams.leftMargin = 0;
+        layoutParams.topMargin = 0;
+        layoutParams.bottomMargin = 0;
+        layoutParams.rightMargin = 0;
+        layoutParams.width= getScreenWidth();
+        layoutParams.height = getScreenHeight();
+
+        return layoutParams;
+    }
+
+    public int getScreenWidth(){
+        return this.getResources().getDisplayMetrics().widthPixels;
+    }
+
+    public int getScreenHeight(){
+        return this.getResources().getDisplayMetrics().heightPixels;
+    }
+
 
     public OnTouchListener touchListener(){
 
@@ -162,16 +200,16 @@ public class cafeteria extends BaseFragment {
                         break;
                     case MotionEvent.ACTION_UP:
 
-                        parms = (RelativeLayout.LayoutParams) view.getLayoutParams();
-
-                        parms.leftMargin = 0;
-                        parms.topMargin = 0;
-                        parms.bottomMargin = 0;
-                        parms.rightMargin = 0;
-//                        parms.width= screenWidth;
-//                        parms.height = screenHeight;
-                        view.setAdjustViewBounds(true);
-                        view.setLayoutParams(parms);
+//                        parms = (RelativeLayout.LayoutParams) view.getLayoutParams();
+//
+//                        parms.leftMargin = 0;
+//                        parms.topMargin = 0;
+//                        parms.bottomMargin = 0;
+//                        parms.rightMargin = 0;
+////                        parms.width= screenWidth;
+////                        parms.height = screenHeight;
+//                        view.setAdjustViewBounds(true);
+//                        view.setLayoutParams(parms);
                         break;
 
                     case MotionEvent.ACTION_POINTER_UP:

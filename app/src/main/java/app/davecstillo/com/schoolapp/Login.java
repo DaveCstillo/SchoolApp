@@ -75,7 +75,9 @@ public class Login extends AppCompatActivity {
         new BackgroundTask<JsonElement>(() -> httpHandler.instance.getJson(finalUrl), (json, exception) -> {
             if (exception != null) {
                 Log.e("JSON ERROR", exception.getMessage());
-
+                Toast toast = Toast.makeText(getApplicationContext(), "No esta conectado a internet", Toast.LENGTH_LONG);
+                toast.show();
+                progressDialog.hide();
             }
             if (json != null) {
                 Log.d("JSON", json.toString());
