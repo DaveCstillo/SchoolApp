@@ -47,8 +47,12 @@ public class Login extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Verificando Datos.");
+        progressDialog.setCancelable(false);
         progressDialog.hide();
         button.setOnClickListener(view ->{
+            Log.i("Progres Showed",String.valueOf(progressDialog.isShowing()));
+
+            if(!progressDialog.isShowing())
                progressDialog.show();
             login(progressDialog);
 

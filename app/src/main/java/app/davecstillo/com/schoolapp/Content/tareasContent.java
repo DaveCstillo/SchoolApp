@@ -14,6 +14,11 @@ public class tareasContent {
 
     }
 
+    public void cleanList(){
+        ITEM.clear();
+        ITEM_MAP.clear();
+    }
+
     public void addItem(tarea hmwk){
         ITEM.add(hmwk);
         ITEM_MAP.put(String.valueOf(hmwk.id), hmwk);

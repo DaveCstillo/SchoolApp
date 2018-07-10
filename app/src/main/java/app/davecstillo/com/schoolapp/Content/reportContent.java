@@ -20,6 +20,11 @@ public class reportContent {
 
     }
 
+    public void cleanList(){
+        ITEM.clear();
+        ITEM_MAP.clear();
+    }
+
 
 
     public static void addItem(reporte item){

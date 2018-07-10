@@ -34,7 +34,6 @@ public class feedFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
 
 
-    public feedItem feedItem;
     public feedContent content = new feedContent();
 
     String ID, Title, Desc, imgName;
@@ -76,6 +75,7 @@ public class feedFragment extends Fragment {
         progressBar = new ProgressDialog(getContext());
         progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressBar.setIndeterminate(true);
+        progressBar.setCancelable(false);
         progressBar.setMessage("Cargando....");
         progressBar.show();
 
@@ -90,6 +90,7 @@ public class feedFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+            content.cleanList();
             callList("downloader.php", recyclerView);
 
         }

@@ -59,15 +59,15 @@ public class cafeteria extends BaseFragment {
         cafeteriaMenuFAB.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                Log.e("FAB","OnTouchListener 1");
+//                Log.e("FAB","OnTouchListener 1");
 
                 RelativeLayout.LayoutParams parametros = (RelativeLayout.LayoutParams) cartel.getLayoutParams();
 
 
-                Log.i("Imagen LMargin",String.valueOf(parametros.leftMargin));
-                Log.i("Imagen RMargin", String.valueOf(parametros.rightMargin));
-                Log.i("Imagen TMargin",String.valueOf(parametros.topMargin));
-                Log.i("Imagen BMargin",String.valueOf(parametros.bottomMargin));
+//                Log.i("Imagen LMargin",String.valueOf(parametros.leftMargin));
+//                Log.i("Imagen RMargin", String.valueOf(parametros.rightMargin));
+//                Log.i("Imagen TMargin",String.valueOf(parametros.topMargin));
+//                Log.i("Imagen BMargin",String.valueOf(parametros.bottomMargin));
 
 
                 cartel.setLayoutParams(setMenuPosition());
@@ -76,11 +76,11 @@ public class cafeteria extends BaseFragment {
 
                 Log.e("FAB","OnTouchListener 2");
 
-
-                Log.i("Imagen LMargin",String.valueOf(parametros.leftMargin));
-                Log.i("Imagen RMargin", String.valueOf(parametros.rightMargin));
-                Log.i("Imagen TMargin",String.valueOf(parametros.topMargin));
-                Log.i("Imagen BMargin",String.valueOf(parametros.bottomMargin));
+//
+//                Log.i("Imagen LMargin",String.valueOf(parametros.leftMargin));
+//                Log.i("Imagen RMargin", String.valueOf(parametros.rightMargin));
+//                Log.i("Imagen TMargin",String.valueOf(parametros.topMargin));
+//                Log.i("Imagen BMargin",String.valueOf(parametros.bottomMargin));
 
 
                 return true;
@@ -173,8 +173,8 @@ public class cafeteria extends BaseFragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                Log.d("Widths: ", "screenWidth: " + String.valueOf(screenWidth));
-                Log.d("Heights: ", "screenHeight: " + String.valueOf(screenHeight));
+//                Log.d("Widths: ", "screenWidth: " + String.valueOf(screenWidth));
+//                Log.d("Heights: ", "screenHeight: " + String.valueOf(screenHeight));
 
                 final ImageView view = (ImageView) v;
 

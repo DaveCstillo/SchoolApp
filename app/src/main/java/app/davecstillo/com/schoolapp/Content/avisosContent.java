@@ -17,6 +17,11 @@ public class avisosContent{
 
     }
 
+    public void cleanList(){
+        ITEM.clear();
+        ITEM_MAP.clear();
+    }
+
     public void addItem(avisos aviso){
         ITEM.add(aviso);
         ITEM_MAP.put(String.valueOf(aviso.ID),aviso);

@@ -16,6 +16,11 @@ public class feedContent {
 
     }
 
+    public void cleanList(){
+        ITEMS.clear();
+        ITEM_MAP.clear();
+    }
+
     public void addItem(feedItem item){
         ITEMS.add(item);
         ITEM_MAP.put(item.ID, item);

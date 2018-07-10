@@ -70,6 +70,7 @@ public class tareasFragment extends BaseFragment {
         progressBar = new ProgressDialog(getContext());
         progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressBar.setIndeterminate(true);
+        progressBar.setCancelable(false);
         progressBar.setMessage("Cargando....");
         progressBar.show();
 
@@ -84,7 +85,7 @@ public class tareasFragment extends BaseFragment {
             }
             StringBuilder ptch = new StringBuilder("getTareas.php?grado=");
             ptch.append(alumno.grado);
-
+            content.cleanList();
             callList(ptch.toString(), recyclerView);
         }
 

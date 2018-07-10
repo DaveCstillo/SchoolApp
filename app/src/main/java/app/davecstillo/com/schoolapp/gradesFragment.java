@@ -72,6 +72,7 @@ public class gradesFragment extends BaseFragment {
 
         progressBar = new ProgressDialog(getContext());
         progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressBar.setCancelable(false);
         progressBar.setIndeterminate(true);
         progressBar.setMessage("Cargando....");
         progressBar.show();
@@ -92,6 +93,7 @@ public class gradesFragment extends BaseFragment {
             path.append(alumno.grado);
 
             String url = path.toString();
+            content.cleanList();
             callList(url, recyclerView);
         }
         return view;

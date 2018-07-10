@@ -71,6 +71,7 @@ public class avisosFragment extends BaseFragment {
 
         progressBar = new ProgressDialog(getContext());
         progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressBar.setCancelable(false);
         progressBar.setIndeterminate(true);
         progressBar.setMessage("Cargando....");
         progressBar.show();
@@ -87,6 +88,8 @@ public class avisosFragment extends BaseFragment {
             }
             StringBuilder url = new StringBuilder("avisados.php");
 
+
+            content.cleanList();
             callList(url.toString(), recyclerView);
 
 

@@ -36,6 +36,12 @@ public class GradesContent extends BaseFragment {
 //        }
     }
 
+    public void cleanList(){
+        ITEMS.clear();
+        ITEM_MAP.clear();
+    }
+
+
     public void addItem(GradeItem item){
         ITEMS.add(item);
         ITEM_MAP.put(String.valueOf(item.id), item);

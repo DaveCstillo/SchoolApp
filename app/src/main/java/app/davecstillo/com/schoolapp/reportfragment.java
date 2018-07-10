@@ -76,6 +76,7 @@ public class reportfragment extends BaseFragment {
         progressBar = new ProgressDialog(getContext());
         progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressBar.setIndeterminate(true);
+        progressBar.setCancelable(false);
         progressBar.setMessage("Cargando....");
         progressBar.show();
         // Set the adapter
@@ -89,6 +90,7 @@ public class reportfragment extends BaseFragment {
             }
             StringBuilder url = new StringBuilder("reportados.php?codAlm=");
             url.append(alumno.codigoAlumno);
+            content.cleanList();
             callList(url.toString(), recyclerView);
         }
         return view;
