@@ -172,6 +172,10 @@ public class menuActivity extends BaseActivity
     @Override
     public void onListFragmentInteraction(feedContent.feedItem item) {
 
+        feedNotice f = new feedNotice();
+        f.setItem(item);
+
+        changeFragment(f);
     }
 
     @Override

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    tools:context=".feedNotice">
+
+
+    <ImageView
+        android:id="@+id/cuadroNIMG"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="16dp"
+        android:contentDescription="Imagen"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/Ntitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:text="titulo general"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/Ndescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in quam ut massa sodales semper eu ut sem. Curabitur iaculis arcu suscipit elit interdum dapibus. Cras id mollis enim. In nulla felis, consectetur tincidunt lorem eu, dictum mattis urna. Sed porttitor nunc ligula, eget aliquam metus bibendum eu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consequat nisi vel ultricies porttitor. Integer accumsan facilisis tincidunt. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis sed dignissim quam. Quisque elementum sagittis consequat. Praesent convallis eget diam at sagittis. Fusce consequat turpis id elit sodales vestibulum."
+        android:textSize="18sp" />
+
+</LinearLayout>
