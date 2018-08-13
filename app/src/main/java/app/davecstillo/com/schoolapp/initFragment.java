@@ -83,9 +83,9 @@ public class initFragment extends BaseFragment {
         tabHost = (TabHost) view.findViewById(R.id.tabHost);
         tabHost.setup();
 
-        TabHost.TabSpec spec = tabHost.newTabSpec("FEED");
+        TabHost.TabSpec spec = tabHost.newTabSpec("BOLETIN");
         spec.setContent(R.id.tab1);
-        spec.setIndicator("FEED");
+        spec.setIndicator("BOLETIN");
         tabHost.addTab(spec);
 
         spec = tabHost.newTabSpec("AVISOS");
